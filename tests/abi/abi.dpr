@@ -3,7 +3,10 @@ program abi;
 {$APPTYPE CONSOLE}
 
 uses
-  SDL3;
+  SDL3,
+  SDL3_image,
+  SDL3_ttf,
+  SDL3_mixer;
 
 procedure Check(const Name: string; Actual, Expected: Integer);
 begin
@@ -92,5 +95,10 @@ begin
   Check('SDL_PenTouchEvent', SizeOf(SDL_PenTouchEvent), 40);
   Check('SDL_PenButtonEvent', SizeOf(SDL_PenButtonEvent), 40);
   Check('SDL_PenAxisEvent', SizeOf(SDL_PenAxisEvent), 48);
+  Check('IMG_Animation', SizeOf(IMG_Animation), 32);
+  Check('TTF_Text', SizeOf(TTF_Text), 24);
+  Check('TTF_SubString', SizeOf(TTF_SubString), 36);
+  Check('MIX_StereoGains', SizeOf(MIX_StereoGains), 8);
+  Check('MIX_Point3D', SizeOf(MIX_Point3D), 12);
   WriteLn('All required ABI checks passed.');
 end.
