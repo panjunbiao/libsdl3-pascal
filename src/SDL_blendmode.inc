@@ -1,1 +1,42 @@
-{ SDL_blendmode.inc -- stub. Translate from SDL/include/SDL3/SDL_blendmode.h }
+{ SDL_blendmode.inc -- 1-to-1 from SDL_blendmode.h }
+
+type
+  SDL_BlendMode = Uint32;
+  PSDL_BlendMode = ^SDL_BlendMode;
+
+const
+  SDL_BLENDMODE_NONE = $00000000;
+  SDL_BLENDMODE_BLEND = $00000001;
+  SDL_BLENDMODE_BLEND_PREMULTIPLIED = $00000010;
+  SDL_BLENDMODE_ADD = $00000002;
+  SDL_BLENDMODE_ADD_PREMULTIPLIED = $00000020;
+  SDL_BLENDMODE_MOD = $00000004;
+  SDL_BLENDMODE_MUL = $00000008;
+  SDL_BLENDMODE_INVALID = $7FFFFFFF;
+
+type
+  SDL_BlendOperation = (
+    SDL_BLENDOPERATION_ADD = $1,
+    SDL_BLENDOPERATION_SUBTRACT = $2,
+    SDL_BLENDOPERATION_REV_SUBTRACT = $3,
+    SDL_BLENDOPERATION_MINIMUM = $4,
+    SDL_BLENDOPERATION_MAXIMUM = $5
+  );
+
+  SDL_BlendFactor = (
+    SDL_BLENDFACTOR_ZERO = $1,
+    SDL_BLENDFACTOR_ONE = $2,
+    SDL_BLENDFACTOR_SRC_COLOR = $3,
+    SDL_BLENDFACTOR_ONE_MINUS_SRC_COLOR = $4,
+    SDL_BLENDFACTOR_SRC_ALPHA = $5,
+    SDL_BLENDFACTOR_ONE_MINUS_SRC_ALPHA = $6,
+    SDL_BLENDFACTOR_DST_COLOR = $7,
+    SDL_BLENDFACTOR_ONE_MINUS_DST_COLOR = $8,
+    SDL_BLENDFACTOR_DST_ALPHA = $9,
+    SDL_BLENDFACTOR_ONE_MINUS_DST_ALPHA = $A
+  );
+
+function SDL_ComposeCustomBlendMode(srcColorFactor: SDL_BlendFactor; dstColorFactor: SDL_BlendFactor;
+  colorOperation: SDL_BlendOperation; srcAlphaFactor: SDL_BlendFactor; dstAlphaFactor: SDL_BlendFactor;
+  alphaOperation: SDL_BlendOperation): SDL_BlendMode; cdecl;
+  external SDL_LIB_NAME;

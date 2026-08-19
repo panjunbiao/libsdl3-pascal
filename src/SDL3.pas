@@ -61,6 +61,9 @@ implementation
 {$I SDL_stdinc.impl.inc}
 {$I SDL_version.impl.inc}
 {$I SDL_rect.impl.inc}
+{$I SDL_pixels.impl.inc}
+{$I SDL_surface.impl.inc}
 {$I SDL_video.impl.inc}
+{$I SDL_keycode.impl.inc}
 
 end.

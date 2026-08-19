@@ -1,5 +1,4 @@
-{ SDL_events.inc -- Phase 1: event type enum, core structs, full function list. }
-{ Remaining event payload structs (keyboard, mouse, ...) come with those headers. }
+{ SDL_events.inc -- event type enum, payload structs, function list. }
 
 type
   SDL_EventType = (
@@ -188,6 +187,110 @@ type
     data2: Sint32;
   end;
 
+  SDL_KeyboardDeviceEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_KeyboardID;
+  end;
+
+  SDL_KeyboardEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+    which: SDL_KeyboardID;
+    scancode: SDL_Scancode;
+    key: SDL_Keycode;
+    mod_: SDL_Keymod;
+    raw: Uint16;
+    down: Boolean;
+    repeat_: Boolean;
+  end;
+
+  SDL_TextEditingEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+    text: PUTF8Char;
+    start: Sint32;
+    length: Sint32;
+  end;
+
+  PPUTF8Char = ^PUTF8Char;
+
+  SDL_TextEditingCandidatesEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+    candidates: PPUTF8Char;
+    num_candidates: Sint32;
+    selected_candidate: Sint32;
+    horizontal: Boolean;
+    padding1: Uint8;
+    padding2: Uint8;
+    padding3: Uint8;
+  end;
+
+  SDL_TextInputEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+    text: PUTF8Char;
+  end;
+
+  SDL_MouseDeviceEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_MouseID;
+  end;
+
+  SDL_MouseMotionEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+    which: SDL_MouseID;
+    state: SDL_MouseButtonFlags;
+    x: Single;
+    y: Single;
+    xrel: Single;
+    yrel: Single;
+  end;
+
+  SDL_MouseButtonEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+    which: SDL_MouseID;
+    button: Uint8;
+    down: Boolean;
+    clicks: Uint8;
+    padding: Uint8;
+    x: Single;
+    y: Single;
+  end;
+
+  SDL_MouseWheelEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+    which: SDL_MouseID;
+    x: Single;
+    y: Single;
+    direction: SDL_MouseWheelDirection;
+    mouse_x: Single;
+    mouse_y: Single;
+    integer_x: Sint32;
+    integer_y: Sint32;
+  end;
+
   SDL_QuitEvent = record
     type_: SDL_EventType;
     reserved: Uint32;
@@ -211,8 +314,17 @@ type
       1: (common: SDL_CommonEvent);
       2: (display: SDL_DisplayEvent);
       3: (window: SDL_WindowEvent);
-      4: (quit: SDL_QuitEvent);
-      5: (user: SDL_UserEvent);
+      4: (kdevice: SDL_KeyboardDeviceEvent);
+      5: (key: SDL_KeyboardEvent);
+      6: (edit: SDL_TextEditingEvent);
+      7: (edit_candidates: SDL_TextEditingCandidatesEvent);
+      8: (text: SDL_TextInputEvent);
+      9: (mdevice: SDL_MouseDeviceEvent);
+      10: (motion: SDL_MouseMotionEvent);
+      11: (button: SDL_MouseButtonEvent);
+      12: (wheel: SDL_MouseWheelEvent);
+      13: (quit: SDL_QuitEvent);
+      14: (user: SDL_UserEvent);
       255: (padding: array[0..127] of Uint8);
   end;
 
