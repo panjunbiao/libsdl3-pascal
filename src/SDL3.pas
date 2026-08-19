@@ -61,5 +61,6 @@ implementation
 {$I SDL_stdinc.impl.inc}
 {$I SDL_version.impl.inc}
 {$I SDL_rect.impl.inc}
+{$I SDL_video.impl.inc}
 
 end.

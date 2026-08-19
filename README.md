@@ -6,7 +6,9 @@ This library translates the SDL3 C API. It does not add classes, `string` helper
 
 ## Status
 
-Early scaffolding. The 2D-core headers are stubbed; translation starts with foundation + video + events. Header version pin: **SDL 3.5.0**.
+Phase 1: foundation, video, and event-queue APIs are translated. Header version pin: **SDL 3.5.0**.
+
+See `examples/hello` for a Delphi Win64 window that polls until quit. See `tests/abi` for `SizeOf` checks (`SDL_Event` must be 128).
 
 ## Requirements
 
