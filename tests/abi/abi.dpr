@@ -53,5 +53,26 @@ begin
   Check('SDL_MouseMotionEvent', SizeOf(SDL_MouseMotionEvent), 48);
   Check('SDL_MouseButtonEvent', SizeOf(SDL_MouseButtonEvent), 40);
   Check('SDL_MouseWheelEvent', SizeOf(SDL_MouseWheelEvent), 56);
+  Check('SDL_GUID', SizeOf(SDL_GUID), 16);
+  Check('SDL_PathInfo', SizeOf(SDL_PathInfo), 40);
+  Check('SDL_Finger', SizeOf(SDL_Finger), 24);
+  Check('SDL_AudioSpec', SizeOf(SDL_AudioSpec), 12);
+  Check('SDL_IOStreamInterface', SizeOf(SDL_IOStreamInterface), 56);
+  Check('SDL_VirtualJoystickTouchpadDesc', SizeOf(SDL_VirtualJoystickTouchpadDesc), 8);
+  Check('SDL_VirtualJoystickSensorDesc', SizeOf(SDL_VirtualJoystickSensorDesc), 8);
+  Check('SDL_VirtualJoystickDesc', SizeOf(SDL_VirtualJoystickDesc), 136);
+  Check('SDL_GamepadBinding', SizeOf(SDL_GamepadBinding), 32);
+  Check('SDL_JoyAxisEvent', SizeOf(SDL_JoyAxisEvent), 32);
+  Check('SDL_JoyBallEvent', SizeOf(SDL_JoyBallEvent), 32);
+  Check('SDL_JoyHatEvent', SizeOf(SDL_JoyHatEvent), 24);
+  Check('SDL_JoyButtonEvent', SizeOf(SDL_JoyButtonEvent), 24);
+  Check('SDL_JoyDeviceEvent', SizeOf(SDL_JoyDeviceEvent), 24);
+  Check('SDL_JoyBatteryEvent', SizeOf(SDL_JoyBatteryEvent), 32);
+  Check('SDL_GamepadTouchpadEvent', SizeOf(SDL_GamepadTouchpadEvent), 40);
+  Check('SDL_GamepadSensorEvent', SizeOf(SDL_GamepadSensorEvent), 48);
+  Check('SDL_AudioDeviceEvent', SizeOf(SDL_AudioDeviceEvent), 24);
+  Check('SDL_TouchFingerEvent', SizeOf(SDL_TouchFingerEvent), 56);
+  Check('SDL_PinchFingerEvent', SizeOf(SDL_PinchFingerEvent), 40);
+  Check('SDL_ClipboardEvent', SizeOf(SDL_ClipboardEvent), 32);
   WriteLn('All required ABI checks passed.');
 end.

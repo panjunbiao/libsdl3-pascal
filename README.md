@@ -6,7 +6,7 @@ This library translates the SDL3 C API. It does not add classes, `string` helper
 
 ## Status
 
-Phase 2: pixels, surfaces, blend modes, the 2D renderer, keyboard, and mouse are translated. Header version pin: **SDL 3.5.0**.
+Phase 3: audio, timer, filesystem, iostream, gamepad/joystick, clipboard, and touch are translated. Header version pin: **SDL 3.5.0**.
 
 See `examples/hello` for a window that polls until quit, and `examples/draw` for clear + filled rectangle (Escape or close to quit). See `tests/abi` for `SizeOf` checks (`SDL_Event` must be 128, `SDL_Surface` is 48 on Win64).
 

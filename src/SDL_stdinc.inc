@@ -21,6 +21,9 @@ type
   PSint64 = ^Sint64;
   PUint64 = ^Uint64;
   PNativeUInt = ^NativeUInt;
+  PPUint8 = ^PUint8;
+  PPUTF8Char = ^PUTF8Char;
+  PBoolean = ^Boolean;
 
   SDL_FunctionPointer = procedure; cdecl;
 

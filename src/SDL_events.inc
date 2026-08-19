@@ -218,8 +218,6 @@ type
     length: Sint32;
   end;
 
-  PPUTF8Char = ^PUTF8Char;
-
   SDL_TextEditingCandidatesEvent = record
     type_: SDL_EventType;
     reserved: Uint32;
@@ -291,6 +289,180 @@ type
     integer_y: Sint32;
   end;
 
+  SDL_JoyAxisEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_JoystickID;
+    axis: Uint8;
+    padding1: Uint8;
+    padding2: Uint8;
+    padding3: Uint8;
+    value: Sint16;
+    padding4: Uint16;
+  end;
+
+  SDL_JoyBallEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_JoystickID;
+    ball: Uint8;
+    padding1: Uint8;
+    padding2: Uint8;
+    padding3: Uint8;
+    xrel: Sint16;
+    yrel: Sint16;
+  end;
+
+  SDL_JoyHatEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_JoystickID;
+    hat: Uint8;
+    value: Uint8;
+    padding1: Uint8;
+    padding2: Uint8;
+  end;
+
+  SDL_JoyButtonEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_JoystickID;
+    button: Uint8;
+    down: Boolean;
+    padding1: Uint8;
+    padding2: Uint8;
+  end;
+
+  SDL_JoyDeviceEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_JoystickID;
+  end;
+
+  SDL_JoyBatteryEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_JoystickID;
+    state: SDL_PowerState;
+    percent: Integer;
+  end;
+
+  SDL_GamepadAxisEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_JoystickID;
+    axis: Uint8;
+    padding1: Uint8;
+    padding2: Uint8;
+    padding3: Uint8;
+    value: Sint16;
+    padding4: Uint16;
+  end;
+
+  SDL_GamepadButtonEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_JoystickID;
+    button: Uint8;
+    down: Boolean;
+    padding1: Uint8;
+    padding2: Uint8;
+  end;
+
+  SDL_GamepadDeviceEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_JoystickID;
+  end;
+
+  SDL_GamepadTouchpadEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_JoystickID;
+    touchpad: Sint32;
+    finger: Sint32;
+    x: Single;
+    y: Single;
+    pressure: Single;
+  end;
+
+  SDL_GamepadSensorEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_JoystickID;
+    sensor: Sint32;
+    data: array[0..2] of Single;
+    sensor_timestamp: Uint64;
+  end;
+
+  SDL_GamepadCapSenseEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_JoystickID;
+    capsense: Uint8;
+    down: Boolean;
+    padding1: Uint8;
+    padding2: Uint8;
+  end;
+
+  SDL_AudioDeviceEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_AudioDeviceID;
+    recording: Boolean;
+    padding1: Uint8;
+    padding2: Uint8;
+    padding3: Uint8;
+  end;
+
+  SDL_TouchFingerEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    touchID: SDL_TouchID;
+    fingerID: SDL_FingerID;
+    x: Single;
+    y: Single;
+    dx: Single;
+    dy: Single;
+    pressure: Single;
+    windowID: SDL_WindowID;
+  end;
+
+  SDL_PinchFingerEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    scale: Single;
+    windowID: SDL_WindowID;
+    span_x: Single;
+    span_y: Single;
+    focus_x: Single;
+    focus_y: Single;
+  end;
+
+  SDL_ClipboardEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    owner: Boolean;
+    num_mime_types: Sint32;
+    mime_types: PPUTF8Char;
+  end;
+
   SDL_QuitEvent = record
     type_: SDL_EventType;
     reserved: Uint32;
@@ -323,8 +495,24 @@ type
       10: (motion: SDL_MouseMotionEvent);
       11: (button: SDL_MouseButtonEvent);
       12: (wheel: SDL_MouseWheelEvent);
-      13: (quit: SDL_QuitEvent);
-      14: (user: SDL_UserEvent);
+      13: (jdevice: SDL_JoyDeviceEvent);
+      14: (jaxis: SDL_JoyAxisEvent);
+      15: (jball: SDL_JoyBallEvent);
+      16: (jhat: SDL_JoyHatEvent);
+      17: (jbutton: SDL_JoyButtonEvent);
+      18: (jbattery: SDL_JoyBatteryEvent);
+      19: (gdevice: SDL_GamepadDeviceEvent);
+      20: (gaxis: SDL_GamepadAxisEvent);
+      21: (gbutton: SDL_GamepadButtonEvent);
+      22: (gtouchpad: SDL_GamepadTouchpadEvent);
+      23: (gsensor: SDL_GamepadSensorEvent);
+      24: (gcapsense: SDL_GamepadCapSenseEvent);
+      25: (adevice: SDL_AudioDeviceEvent);
+      26: (tfinger: SDL_TouchFingerEvent);
+      27: (pinch: SDL_PinchFingerEvent);
+      28: (clipboard: SDL_ClipboardEvent);
+      29: (quit: SDL_QuitEvent);
+      30: (user: SDL_UserEvent);
       255: (padding: array[0..127] of Uint8);
   end;
 

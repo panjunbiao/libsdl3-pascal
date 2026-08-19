@@ -44,14 +44,16 @@ const
 {$I SDL_keyboard.inc}
 {$I SDL_mouse.inc}
 {$I SDL_guid.inc}
+{$I SDL_power.inc}
+{$I SDL_sensor.inc}
 {$I SDL_joystick.inc}
 {$I SDL_gamepad.inc}
 {$I SDL_touch.inc}
+{$I SDL_audio.inc}
 {$I SDL_events.inc}
 {$I SDL_init.inc}
 {$I SDL_main.inc}
 {$I SDL_timer.inc}
-{$I SDL_audio.inc}
 {$I SDL_filesystem.inc}
 {$I SDL_clipboard.inc}
 {$I SDL_render.inc}
@@ -62,8 +64,12 @@ implementation
 {$I SDL_version.impl.inc}
 {$I SDL_rect.impl.inc}
 {$I SDL_pixels.impl.inc}
+{$I SDL_iostream.impl.inc}
 {$I SDL_surface.impl.inc}
 {$I SDL_video.impl.inc}
 {$I SDL_keycode.impl.inc}
+{$I SDL_joystick.impl.inc}
+{$I SDL_timer.impl.inc}
+{$I SDL_audio.impl.inc}
 
 end.
