@@ -8,9 +8,9 @@ This library translates the SDL3 C API. It does not add classes, `string` helper
 
 ## Status
 
-Phase 5: remaining 2D / 2.5D SDL3 headers are translated (threads, storage, dialogs, pen events, Windows `SDL_system` subset). Header version pin: **SDL 3.5.0**. First release is **Delphi 11+ Win64**.
+Phase 4 (in progress): first-release coverage is complete. Header version pin: **SDL 3.5.0**. First release is **Delphi 11+ Win64**.
 
-See `examples/hello` for a window that polls until quit, and `examples/draw` for clear + filled rectangle (Escape or close to quit). See `tests/abi` for `SizeOf` checks (`SDL_Event` must be 128, `SDL_Surface` is 48 on Win64).
+See `examples/hello` for a window that polls until quit, `examples/draw` for a filled rectangle, and `examples/gameloop` for a Delphi Win64 `.dproj` (timestep, WASD/arrows, optional gamepad, generated texture). See `tests/abi` for `SizeOf` checks (`SDL_Event` must be 128, `SDL_Surface` is 48 on Win64).
 
 ## Requirements
 
@@ -24,9 +24,10 @@ On Delphi Windows, call `SDL_SetMainReady` before `SDL_Init`.
 ```
 src/SDL3.pas     main unit
 src/SDL_*.inc    one include per C header
-examples/hello   window + quit
-examples/draw    clear + filled rectangle
-tests/abi        SizeOf checks
+examples/hello     window + quit
+examples/draw      clear + filled rectangle
+examples/gameloop  Delphi Win64 game-loop project
+tests/abi          SizeOf checks
 ```
 
 ## License

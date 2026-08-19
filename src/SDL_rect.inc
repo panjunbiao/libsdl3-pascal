@@ -44,3 +44,13 @@ function SDL_GetRectEnclosingPoints(const points: PSDL_Point; count: Integer; co
   external SDL_LIB_NAME;
 function SDL_GetRectAndLineIntersection(const rect: PSDL_Rect; X1, Y1, X2, Y2: PInteger): Boolean; cdecl;
   external SDL_LIB_NAME;
+function SDL_HasRectIntersectionFloat(const A, B: PSDL_FRect): Boolean; cdecl;
+  external SDL_LIB_NAME;
+function SDL_GetRectIntersectionFloat(const A, B: PSDL_FRect; result_: PSDL_FRect): Boolean; cdecl;
+  external SDL_LIB_NAME;
+function SDL_GetRectUnionFloat(const A, B: PSDL_FRect; result_: PSDL_FRect): Boolean; cdecl;
+  external SDL_LIB_NAME;
+function SDL_GetRectEnclosingPointsFloat(const points: PSDL_FPoint; count: Integer; const clip: PSDL_FRect; result_: PSDL_FRect): Boolean; cdecl;
+  external SDL_LIB_NAME;
+function SDL_GetRectAndLineIntersectionFloat(const rect: PSDL_FRect; X1, Y1, X2, Y2: PSingle): Boolean; cdecl;
+  external SDL_LIB_NAME;
