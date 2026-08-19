@@ -6,27 +6,12 @@ type
   PSDL_WindowsMSG = Pointer;
   SDL_WindowsMessageHook = function(userdata: Pointer; msg: PSDL_WindowsMSG): Boolean; cdecl;
 
-  SDL_FormFactor = (
-    SDL_FORMFACTOR_UNKNOWN = 0,
-    SDL_FORMFACTOR_DESKTOP,
-    SDL_FORMFACTOR_LAPTOP,
-    SDL_FORMFACTOR_PHONE,
-    SDL_FORMFACTOR_TABLET,
-    SDL_FORMFACTOR_CONSOLE,
-    SDL_FORMFACTOR_HANDHELD,
-    SDL_FORMFACTOR_WATCH,
-    SDL_FORMFACTOR_TV,
-    SDL_FORMFACTOR_HEADSET,
-    SDL_FORMFACTOR_CAR
-  );
-
   SDL_Sandbox = (
     SDL_SANDBOX_NONE = 0,
     SDL_SANDBOX_UNKNOWN_CONTAINER,
     SDL_SANDBOX_FLATPAK,
     SDL_SANDBOX_SNAP,
-    SDL_SANDBOX_MACOS,
-    SDL_SANDBOX_LOMIRI
+    SDL_SANDBOX_MACOS
   );
 
 procedure SDL_SetWindowsMessageHook(callback: SDL_WindowsMessageHook; userdata: Pointer); cdecl;
@@ -35,15 +20,9 @@ function SDL_GetDirect3D9AdapterIndex(displayID: SDL_DisplayID): Integer; cdecl;
   external SDL_LIB_NAME;
 function SDL_GetDXGIOutputInfo(displayID: SDL_DisplayID; adapterIndex, outputIndex: PInteger): Boolean; cdecl;
   external SDL_LIB_NAME;
-function SDL_IsPhone: Boolean; cdecl;
-  external SDL_LIB_NAME;
 function SDL_IsTablet: Boolean; cdecl;
   external SDL_LIB_NAME;
 function SDL_IsTV: Boolean; cdecl;
-  external SDL_LIB_NAME;
-function SDL_GetDeviceFormFactor: SDL_FormFactor; cdecl;
-  external SDL_LIB_NAME;
-function SDL_GetDeviceFormFactorName(form_factor: SDL_FormFactor): PUTF8Char; cdecl;
   external SDL_LIB_NAME;
 function SDL_GetSandbox: SDL_Sandbox; cdecl;
   external SDL_LIB_NAME;

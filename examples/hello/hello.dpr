@@ -9,9 +9,22 @@ var
   Window: PSDL_Window;
   Event: SDL_Event;
   Running: Boolean;
+  Linked: Integer;
 begin
   SDL_SetMainReady;
   SDL_SetAppMetadata('libsdl3-pascal hello', '0.1.0', 'com.libsdl3pascal.hello');
+
+  Linked := SDL_GetVersion;
+  if SDL_VERSIONNUM_MAJOR(Linked) <> SDL_MAJOR_VERSION then
+  begin
+    WriteLn('SDL3.dll major version does not match this binding.');
+    Halt(1);
+  end;
+  if Linked < SDL_VERSION then
+  begin
+    WriteLn('SDL3.dll is older than the SDL 3.4.14 pin.');
+    Halt(1);
+  end;
 
   if not SDL_Init(SDL_INIT_VIDEO) then
   begin
@@ -19,7 +32,7 @@ begin
     Halt(1);
   end;
 
-  WriteLn('SDL_GetVersion = ', SDL_GetVersion, ' (headers ', SDL_VERSION, ')');
+  WriteLn('SDL_GetVersion = ', Linked, ' (headers ', SDL_VERSION, ')');
 
   Window := SDL_CreateWindow('libsdl3-pascal', 640, 480, 0);
   if Window = nil then

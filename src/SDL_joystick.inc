@@ -93,8 +93,6 @@ procedure SDL_INIT_INTERFACE(desc: PSDL_VirtualJoystickDesc); overload;
 
 procedure SDL_LockJoysticks; cdecl;
   external SDL_LIB_NAME;
-function SDL_TryLockJoysticks: Boolean; cdecl;
-  external SDL_LIB_NAME;
 procedure SDL_UnlockJoysticks; cdecl;
   external SDL_LIB_NAME;
 function SDL_HasJoystick: Boolean; cdecl;

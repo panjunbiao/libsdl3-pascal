@@ -31,8 +31,7 @@ begin
   if SDL_ISPIXELFORMAT_FOURCC(format) then
   begin
     if (format = SDL_PIXELFORMAT_YUY2) or (format = SDL_PIXELFORMAT_UYVY) or
-       (format = SDL_PIXELFORMAT_YVYU) or (format = SDL_PIXELFORMAT_P010) or
-       (format = SDL_PIXELFORMAT_P416) then
+       (format = SDL_PIXELFORMAT_YVYU) or (format = SDL_PIXELFORMAT_P010) then
       Result := 2
     else
       Result := 1;

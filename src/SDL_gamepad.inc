@@ -18,7 +18,6 @@ type
     SDL_GAMEPAD_TYPE_NINTENDO_SWITCH_JOYCON_RIGHT,
     SDL_GAMEPAD_TYPE_NINTENDO_SWITCH_JOYCON_PAIR,
     SDL_GAMEPAD_TYPE_GAMECUBE,
-    SDL_GAMEPAD_TYPE_STEAM,
     SDL_GAMEPAD_TYPE_COUNT
   );
 
@@ -74,15 +73,6 @@ type
     SDL_GAMEPAD_AXIS_LEFT_TRIGGER,
     SDL_GAMEPAD_AXIS_RIGHT_TRIGGER,
     SDL_GAMEPAD_AXIS_COUNT
-  );
-
-  SDL_GamepadCapSenseType = (
-    SDL_GAMEPAD_CAPSENSE_INVALID = -1,
-    SDL_GAMEPAD_CAPSENSE_LEFT_STICK,
-    SDL_GAMEPAD_CAPSENSE_RIGHT_STICK,
-    SDL_GAMEPAD_CAPSENSE_LEFT_GRIP,
-    SDL_GAMEPAD_CAPSENSE_RIGHT_GRIP,
-    SDL_GAMEPAD_CAPSENSE_COUNT
   );
 
   SDL_GamepadBindingType = (
@@ -270,10 +260,6 @@ function SDL_GamepadSensorEnabled(gamepad: PSDL_Gamepad; type_: SDL_SensorType):
 function SDL_GetGamepadSensorDataRate(gamepad: PSDL_Gamepad; type_: SDL_SensorType): Single; cdecl;
   external SDL_LIB_NAME;
 function SDL_GetGamepadSensorData(gamepad: PSDL_Gamepad; type_: SDL_SensorType; data: PSingle; num_values: Integer): Boolean; cdecl;
-  external SDL_LIB_NAME;
-function SDL_GamepadHasCapSense(gamepad: PSDL_Gamepad; type_: SDL_GamepadCapSenseType): Boolean; cdecl;
-  external SDL_LIB_NAME;
-function SDL_GetGamepadCapSense(gamepad: PSDL_Gamepad; type_: SDL_GamepadCapSenseType): Boolean; cdecl;
   external SDL_LIB_NAME;
 function SDL_RumbleGamepad(gamepad: PSDL_Gamepad; low_frequency_rumble, high_frequency_rumble: Uint16;
   duration_ms: Uint32): Boolean; cdecl;

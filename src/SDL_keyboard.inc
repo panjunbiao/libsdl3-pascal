@@ -28,10 +28,6 @@ const
   SDL_PROP_TEXTINPUT_CAPITALIZATION_NUMBER = 'SDL.textinput.capitalization';
   SDL_PROP_TEXTINPUT_AUTOCORRECT_BOOLEAN = 'SDL.textinput.autocorrect';
   SDL_PROP_TEXTINPUT_MULTILINE_BOOLEAN = 'SDL.textinput.multiline';
-  SDL_PROP_TEXTINPUT_TITLE_STRING = 'SDL.textinput.title';
-  SDL_PROP_TEXTINPUT_PLACEHOLDER_STRING = 'SDL.textinput.placeholder';
-  SDL_PROP_TEXTINPUT_DEFAULT_TEXT_STRING = 'SDL.textinput.default_text';
-  SDL_PROP_TEXTINPUT_MAX_LENGTH_NUMBER = 'SDL.textinput.max_length';
   SDL_PROP_TEXTINPUT_ANDROID_INPUTTYPE_NUMBER = 'SDL.textinput.android.inputtype';
 
 function SDL_HasKeyboard: Boolean; cdecl;

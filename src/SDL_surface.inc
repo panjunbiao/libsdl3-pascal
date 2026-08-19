@@ -97,10 +97,6 @@ function SDL_SavePNG_IO(surface: PSDL_Surface; dst: PSDL_IOStream; closeio: Bool
   external SDL_LIB_NAME;
 function SDL_SavePNG(surface: PSDL_Surface; file_: PUTF8Char): Boolean; cdecl;
   external SDL_LIB_NAME;
-function SDL_LoadJPG_IO(src: PSDL_IOStream; closeio: Boolean): PSDL_Surface; cdecl;
-  external SDL_LIB_NAME;
-function SDL_LoadJPG(file_: PUTF8Char): PSDL_Surface; cdecl;
-  external SDL_LIB_NAME;
 function SDL_SetSurfaceRLE(surface: PSDL_Surface; enabled: Boolean): Boolean; cdecl;
   external SDL_LIB_NAME;
 function SDL_SurfaceHasRLE(surface: PSDL_Surface): Boolean; cdecl;

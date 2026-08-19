@@ -56,8 +56,6 @@ function SDL_GetBooleanProperty(props: SDL_PropertiesID; name: PUTF8Char; defaul
   external SDL_LIB_NAME;
 function SDL_ClearProperty(props: SDL_PropertiesID; name: PUTF8Char): Boolean; cdecl;
   external SDL_LIB_NAME;
-function SDL_GetNumProperties(props: SDL_PropertiesID): Integer; cdecl;
-  external SDL_LIB_NAME;
 function SDL_EnumerateProperties(props: SDL_PropertiesID; callback: SDL_EnumeratePropertiesCallback; userdata: Pointer): Boolean; cdecl;
   external SDL_LIB_NAME;
 procedure SDL_DestroyProperties(props: SDL_PropertiesID); cdecl;

@@ -31,8 +31,6 @@ function SDL_HasARMSIMD: Boolean; cdecl;
   external SDL_LIB_NAME;
 function SDL_HasNEON: Boolean; cdecl;
   external SDL_LIB_NAME;
-function SDL_HasSVE2: Boolean; cdecl;
-  external SDL_LIB_NAME;
 function SDL_HasLSX: Boolean; cdecl;
   external SDL_LIB_NAME;
 function SDL_HasLASX: Boolean; cdecl;
