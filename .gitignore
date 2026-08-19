@@ -1,0 +1,27 @@
+# Delphi / FPC
+*.dcu
+*.dcp
+*.dsk
+*.identcache
+*.local
+*.stat
+*.mes
+*.o
+*.or
+*.ppu
+*.a
+*.exe
+*.dll
+*.so
+*.dylib
+__history/
+__recovery/
+Win32/
+Win64/
+OSX64/
+OSXARM64/
+*.~*
+
+# OS
+.DS_Store
+Thumbs.db
