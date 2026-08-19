@@ -74,5 +74,23 @@ begin
   Check('SDL_TouchFingerEvent', SizeOf(SDL_TouchFingerEvent), 56);
   Check('SDL_PinchFingerEvent', SizeOf(SDL_PinchFingerEvent), 40);
   Check('SDL_ClipboardEvent', SizeOf(SDL_ClipboardEvent), 32);
+  Check('SDL_Locale', SizeOf(SDL_Locale), 16);
+  Check('SDL_DateTime', SizeOf(SDL_DateTime), 36);
+  Check('SDL_AtomicInt', SizeOf(SDL_AtomicInt), 4);
+  Check('SDL_AtomicU32', SizeOf(SDL_AtomicU32), 4);
+  Check('SDL_InitState', SizeOf(SDL_InitState), 24);
+  Check('SDL_MessageBoxButtonData', SizeOf(SDL_MessageBoxButtonData), 16);
+  Check('SDL_MessageBoxColor', SizeOf(SDL_MessageBoxColor), 3);
+  Check('SDL_MessageBoxColorScheme', SizeOf(SDL_MessageBoxColorScheme), 15);
+  Check('SDL_MessageBoxData', SizeOf(SDL_MessageBoxData), 56);
+  Check('SDL_DialogFileFilter', SizeOf(SDL_DialogFileFilter), 16);
+  Check('SDL_AssertData', SizeOf(SDL_AssertData), 48);
+  Check('SDL_AsyncIOOutcome', SizeOf(SDL_AsyncIOOutcome), 56);
+  Check('SDL_StorageInterface', SizeOf(SDL_StorageInterface), 96);
+  Check('SDL_PenProximityEvent', SizeOf(SDL_PenProximityEvent), 32);
+  Check('SDL_PenMotionEvent', SizeOf(SDL_PenMotionEvent), 40);
+  Check('SDL_PenTouchEvent', SizeOf(SDL_PenTouchEvent), 40);
+  Check('SDL_PenButtonEvent', SizeOf(SDL_PenButtonEvent), 40);
+  Check('SDL_PenAxisEvent', SizeOf(SDL_PenAxisEvent), 48);
   WriteLn('All required ABI checks passed.');
 end.

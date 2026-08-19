@@ -1,0 +1,39 @@
+{ SDL_pen.inc -- 1-to-1 from SDL_pen.h }
+
+type
+  SDL_PenID = Uint32;
+  PSDL_PenID = ^SDL_PenID;
+  SDL_PenInputFlags = Uint32;
+
+  SDL_PenAxis = (
+    SDL_PEN_AXIS_PRESSURE,
+    SDL_PEN_AXIS_XTILT,
+    SDL_PEN_AXIS_YTILT,
+    SDL_PEN_AXIS_DISTANCE,
+    SDL_PEN_AXIS_ROTATION,
+    SDL_PEN_AXIS_SLIDER,
+    SDL_PEN_AXIS_TANGENTIAL_PRESSURE,
+    SDL_PEN_AXIS_COUNT
+  );
+
+  SDL_PenDeviceType = (
+    SDL_PEN_DEVICE_TYPE_INVALID = -1,
+    SDL_PEN_DEVICE_TYPE_UNKNOWN,
+    SDL_PEN_DEVICE_TYPE_DIRECT,
+    SDL_PEN_DEVICE_TYPE_INDIRECT
+  );
+
+const
+  SDL_PEN_MOUSEID = SDL_MouseID(-2);
+  SDL_PEN_TOUCHID = SDL_TouchID(-2);
+  SDL_PEN_INPUT_DOWN = Uint32(1) shl 0;
+  SDL_PEN_INPUT_BUTTON_1 = Uint32(1) shl 1;
+  SDL_PEN_INPUT_BUTTON_2 = Uint32(1) shl 2;
+  SDL_PEN_INPUT_BUTTON_3 = Uint32(1) shl 3;
+  SDL_PEN_INPUT_BUTTON_4 = Uint32(1) shl 4;
+  SDL_PEN_INPUT_BUTTON_5 = Uint32(1) shl 5;
+  SDL_PEN_INPUT_ERASER_TIP = Uint32(1) shl 30;
+  SDL_PEN_INPUT_IN_PROXIMITY = Uint32(1) shl 31;
+
+function SDL_GetPenDeviceType(instance_id: SDL_PenID): SDL_PenDeviceType; cdecl;
+  external SDL_LIB_NAME;

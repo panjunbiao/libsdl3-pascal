@@ -463,6 +463,65 @@ type
     mime_types: PPUTF8Char;
   end;
 
+  SDL_PenProximityEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+    which: SDL_PenID;
+    pen_state: SDL_PenInputFlags;
+  end;
+
+  SDL_PenMotionEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+    which: SDL_PenID;
+    pen_state: SDL_PenInputFlags;
+    x: Single;
+    y: Single;
+  end;
+
+  SDL_PenTouchEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+    which: SDL_PenID;
+    pen_state: SDL_PenInputFlags;
+    x: Single;
+    y: Single;
+    eraser: Boolean;
+    down: Boolean;
+  end;
+
+  SDL_PenButtonEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+    which: SDL_PenID;
+    pen_state: SDL_PenInputFlags;
+    x: Single;
+    y: Single;
+    button: Uint8;
+    down: Boolean;
+  end;
+
+  SDL_PenAxisEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+    which: SDL_PenID;
+    pen_state: SDL_PenInputFlags;
+    x: Single;
+    y: Single;
+    axis: SDL_PenAxis;
+    value: Single;
+  end;
+
   SDL_QuitEvent = record
     type_: SDL_EventType;
     reserved: Uint32;
@@ -511,8 +570,13 @@ type
       26: (tfinger: SDL_TouchFingerEvent);
       27: (pinch: SDL_PinchFingerEvent);
       28: (clipboard: SDL_ClipboardEvent);
-      29: (quit: SDL_QuitEvent);
-      30: (user: SDL_UserEvent);
+      29: (pproximity: SDL_PenProximityEvent);
+      30: (ptouch: SDL_PenTouchEvent);
+      31: (pmotion: SDL_PenMotionEvent);
+      32: (pbutton: SDL_PenButtonEvent);
+      33: (paxis: SDL_PenAxisEvent);
+      34: (quit: SDL_QuitEvent);
+      35: (user: SDL_UserEvent);
       255: (padding: array[0..127] of Uint8);
   end;
 

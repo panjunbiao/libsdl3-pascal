@@ -40,3 +40,13 @@ const
   SDL_MIN_SINT32 = Sint32(-2147483647 - 1);
   SDL_MAX_UINT32 = Uint32($FFFFFFFF);
   SDL_MIN_UINT32 = Uint32(0);
+
+{ Needed by locale / storage / asyncio callers. Other CRT clones stay out. }
+function SDL_malloc(size: NativeUInt): Pointer; cdecl;
+  external SDL_LIB_NAME;
+function SDL_calloc(nmemb, size: NativeUInt): Pointer; cdecl;
+  external SDL_LIB_NAME;
+function SDL_realloc(mem: Pointer; size: NativeUInt): Pointer; cdecl;
+  external SDL_LIB_NAME;
+procedure SDL_free(mem: Pointer); cdecl;
+  external SDL_LIB_NAME;
