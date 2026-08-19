@@ -2,6 +2,8 @@
 
 Win64 smoke for the optional satellite units: load a JPEG and a PNG, draw Latin and Chinese with the renderer text engine, loop a short MP3. Not an engine.
 
+![satellites example](../../docs/images/satellites.png)
+
 ## Build
 
 Put these official DLLs next to the executable (or on `PATH`):
