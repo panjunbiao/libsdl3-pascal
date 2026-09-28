@@ -9,5 +9,5 @@ Escape, the window close button, or the tray Quit entry ends the program.
 Put `SDL3.dll` (3.4.16) next to the executable, or on `PATH`. From the repository root, `powershell -File tools\fetch-dlls.ps1` downloads the official DLL into this folder.
 
 ```
-dcc64 -U..\..\src -I..\..\src tray.dpr
+dcc64 "-U..\..\src" "-I..\..\src" tray.dpr
 ```

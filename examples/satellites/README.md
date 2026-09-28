@@ -16,7 +16,7 @@ From the repository root, `powershell -File tools\fetch-dlls.ps1` downloads thes
 Keep `assets/` next to the exe. `SDL_GetBasePath` resolves those files.
 
 ```
-dcc64 -U..\..\src -I..\..\src satellites.dpr
+dcc64 "-U..\..\src" "-I..\..\src" satellites.dpr
 ```
 
 Or add `libsdl3-pascal\src` to the Delphi search path. Escape or close the window to quit.

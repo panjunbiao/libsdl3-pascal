@@ -12,8 +12,10 @@ Clone or vendor [libsdl3-pascal](https://github.com/panjunbiao/libsdl3-pascal) a
 - Command line:
 
 ```
-dcc64 -Upath\to\libsdl3-pascal\src -Ipath\to\libsdl3-pascal\src myapp.dpr
+dcc64 "-Upath\to\libsdl3-pascal\src" "-Ipath\to\libsdl3-pascal\src" myapp.dpr
 ```
+
+Quote each switch together with its path. `dcc64` ends a switch at `.`, so `-U..\..\src` is read as an empty search path plus a project named `..\..\src.dpr` (`F1026`).
 
 `uses SDL3` for the core. Add `SDL3_image`, `SDL3_ttf`, and/or `SDL3_mixer` only if you call those APIs.
 

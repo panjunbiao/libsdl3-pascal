@@ -1,7 +1,7 @@
 # Pascal ABI checker
 
 ```
-dcc64 -U..\..\src -I..\..\src abi.dpr
+dcc64 "-U..\..\src" "-I..\..\src" abi.dpr
 abi.exe
 ```
 

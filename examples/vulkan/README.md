@@ -11,5 +11,5 @@ The program exits with an error if `vulkan-1.dll` is not installed.
 Put `SDL3.dll` (3.4.16) next to the executable, or on `PATH`. From the repository root, `powershell -File tools\fetch-dlls.ps1` downloads the official DLL into this folder.
 
 ```
-dcc64 -U..\..\src -I..\..\src vulkan.dpr
+dcc64 "-U..\..\src" "-I..\..\src" vulkan.dpr
 ```

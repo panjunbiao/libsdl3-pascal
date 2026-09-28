@@ -9,7 +9,7 @@ Put `SDL3.dll` (3.4.16) next to the executable, or on `PATH`. From the repositor
 From the `src` directory on the compiler unit path:
 
 ```
-dcc64 -U..\..\src hello.dpr
+dcc64 "-U..\..\src" "-I..\..\src" hello.dpr
 ```
 
 Or add `libsdl3-pascal\src` to the Delphi project's search path and compile `hello.dpr`.
