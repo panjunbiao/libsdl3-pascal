@@ -20,6 +20,8 @@ Step-by-step setup: [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md).
 
 Also see `examples/hello` (window + quit), `examples/draw` (clear + rectangle), and `tests/abi` (`SDL_Event` must be 128 bytes on Win64).
 
+The headers added after the 2D cut have the same kind of small programs: `examples/gpu` (GPU clear), `examples/camera`, `examples/tray`, `examples/process`, `examples/devices` (haptic and HID), and `examples/vulkan`.
+
 ## Architecture
 
 One Pascal unit per C library. Satellites `uses SDL3` and link their own DLL. A later game engine can sit on top of these units; it is not part of this repository.
@@ -77,6 +79,12 @@ examples/hello        window + quit
 examples/draw         clear + filled rectangle
 examples/gameloop     Delphi Win64 game-loop project
 examples/satellites   JPEG/PNG + TTF + MP3 smoke
+examples/gpu          SDL_GPU clear
+examples/camera       camera frame to a texture
+examples/tray         notification-area menu
+examples/process      child process stdout
+examples/devices      haptic and HID listing
+examples/vulkan       Vulkan instance extensions
 tests/abi             SizeOf checks
 ```
 

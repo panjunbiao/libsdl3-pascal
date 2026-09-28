@@ -26,3 +26,4 @@ OSXARM64/
 .DS_Store
 Thumbs.db
 examples/gameloop/gameloop.res
+*.dproj
