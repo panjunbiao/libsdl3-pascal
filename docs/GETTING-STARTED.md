@@ -78,7 +78,7 @@ begin
 end.
 ```
 
-`examples/hello` is this program with a version check. `examples/draw` adds a renderer. `examples/gameloop` is a Delphi Win64 `.dproj`. `examples/satellites` loads JPEG/PNG, draws Latin and Chinese, and loops an MP3.
+`examples/hello` is this program with a version check. `examples/draw` adds a renderer. `examples/gameloop` is the Win64 game-loop program. `examples/satellites` loads JPEG/PNG, draws Latin and Chinese, and loops an MP3.
 
 ## 4. Names and strings
 

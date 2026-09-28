@@ -1,10 +1,10 @@
 # gameloop
 
-Delphi Win64 `.dproj`: fixed timestep, WASD / arrows / optional gamepad, generated checkerboard texture.
+Win64 game loop: fixed timestep, WASD / arrows / optional gamepad, generated checkerboard texture.
 
 ![gameloop example](../../docs/images/gameloop.png)
 
-Put `SDL3.dll` 3.4.14 next to the executable. Open `gameloop.dproj` and add `libsdl3-pascal\src` to the search path, or:
+Put `SDL3.dll` 3.4.14 next to the executable. Open `gameloop.dpr` in Delphi and add `libsdl3-pascal\src` to the unit and include search paths, or:
 
 ```
 dcc64 -U..\..\src -I..\..\src gameloop.dpr
