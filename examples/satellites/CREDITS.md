@@ -8,7 +8,7 @@ zlib. Copy each zip's `LICENSE.txt` (and `optional/LICENSE.*` if you copy extra 
 
 | Package | Pin |
 |---|---|
-| [SDL3](https://github.com/libsdl-org/SDL/releases/tag/release-3.4.14) | 3.4.14 |
+| [SDL3](https://github.com/libsdl-org/SDL/releases/tag/release-3.4.16) | 3.4.16 |
 | [SDL3_image](https://github.com/libsdl-org/SDL_image/releases/tag/release-3.4.4) | 3.4.4 |
 | [SDL3_ttf](https://github.com/libsdl-org/SDL_ttf/releases/tag/release-3.2.2) | 3.2.2 |
 | [SDL3_mixer](https://github.com/libsdl-org/SDL_mixer/releases/tag/release-3.2.4) | 3.2.4 |

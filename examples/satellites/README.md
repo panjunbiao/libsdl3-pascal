@@ -6,9 +6,9 @@ Win64 smoke for the optional satellite units: load a JPEG and a PNG, draw Latin 
 
 ## Build
 
-Put these official DLLs next to the executable (or on `PATH`):
+From the repository root, `powershell -File tools\fetch-dlls.ps1` downloads these official DLLs into this folder (including `libpng16-16.dll`):
 
-- `SDL3.dll` 3.4.14
+- `SDL3.dll` 3.4.16
 - `SDL3_image.dll` 3.4.4 (PNG also needs `optional/libpng16-16.dll`)
 - `SDL3_ttf.dll` 3.2.2
 - `SDL3_mixer.dll` 3.2.4 (MP3 is built into this pin)

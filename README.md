@@ -2,7 +2,7 @@
 
 1-to-1 Pascal bindings for [Simple DirectMedia Layer 3](https://www.libsdl.org/).
 
-This library is a complete mapping of the app-callable SDL **3.4.14** headers, plus optional satellites, for **Delphi 11+ Win64**. It translates the C APIs. It does not add classes, `string` helpers, or a game engine. Applications write `uses SDL3` (and `SDL3_image` / `SDL3_ttf` / `SDL3_mixer` if needed) and call the C names (`SDL_Init`, `SDL_CreateGPUDevice`, `IMG_LoadTexture`, `TTF_OpenFont`, `MIX_PlayTrack`, …).
+This library is a complete mapping of the app-callable SDL **3.4.16** headers, plus optional satellites, for **Delphi 11+ Win64**. It translates the C APIs. It does not add classes, `string` helpers, or a game engine. Applications write `uses SDL3` (and `SDL3_image` / `SDL3_ttf` / `SDL3_mixer` if needed) and call the C names (`SDL_Init`, `SDL_CreateGPUDevice`, `IMG_LoadTexture`, `TTF_OpenFont`, `MIX_PlayTrack`, …).
 
 v1.0 and v1.1 shipped a 2D-oriented cut first. That was release order, not a limit on later headers.
 
@@ -49,7 +49,7 @@ flowchart LR
 
 | Unit | Upstream | Pin | DLL |
 |---|---|---|---|
-| `SDL3` | [SDL](https://github.com/libsdl-org/SDL) | **3.4.14** | `SDL3.dll` |
+| `SDL3` | [SDL](https://github.com/libsdl-org/SDL) | **3.4.16** | `SDL3.dll` |
 | `SDL3_image` | [SDL_image](https://github.com/libsdl-org/SDL_image) | **3.4.4** | `SDL3_image.dll` |
 | `SDL3_ttf` | [SDL_ttf](https://github.com/libsdl-org/SDL_ttf) | **3.2.2** | `SDL3_ttf.dll` |
 | `SDL3_mixer` | [SDL_mixer](https://github.com/libsdl-org/SDL_mixer) | **3.2.4** | `SDL3_mixer.dll` (`MIX_*`, not SDL2 `Mix_*`) |
@@ -60,7 +60,7 @@ GPU, camera, haptic, HID, process, tray, Vulkan surface helpers, and Metal view 
 
 1. Add `libsdl3-pascal\src` to the Delphi search path (units and includes).
 2. `uses SDL3`. On Windows call `SDL_SetMainReady` before `SDL_Init`.
-3. Put official `SDL3.dll` **3.4.14** next to the exe. Add satellite DLLs only if you `uses` those units.
+3. Run `powershell -File tools\fetch-dlls.ps1`, or put official `SDL3.dll` **3.4.16** next to the exe yourself. Add satellite DLLs only if you `uses` those units.
 4. Compare `SDL_GetVersion` to `SDL_VERSION`. Refuse a different major, or a runtime older than the pin.
 
 Full notes (search path, optional decoder DLLs, UTF-8 text, version checks): [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md).
@@ -75,6 +75,7 @@ src/SDL3_mixer.pas    optional SDL_mixer
 src/SDL_*.inc         one include per C header
 docs/GETTING-STARTED.md
 docs/images/          example screenshots
+tools/fetch-dlls.ps1  official Win64 DLLs for the examples
 examples/hello        window + quit
 examples/draw         clear + filled rectangle
 examples/gameloop     Delphi Win64 game-loop project
@@ -92,7 +93,7 @@ tests/abi             SizeOf checks
 
 Dates are not fixed. The binding stays a literal C mapping as it grows. The `{$IFDEF}` library-name split is already in each unit so later platforms do not need a redesign.
 
-**Now:** Delphi 11+ on **Windows desktop, 64-bit**, covering the SDL 3.4.14 app-callable API.
+**Now:** Delphi 11+ on **Windows desktop, 64-bit**, covering the SDL 3.4.16 app-callable API.
 
 **Next platforms** (order may change):
 
@@ -103,7 +104,7 @@ Dates are not fixed. The binding stays a literal C mapping as it grows. The `{$I
 
 Each new OS or architecture needs its own C ABI check (`sizeof` / packing can differ) and a real official binary before we claim it.
 
-**Still out of the binding, on purpose:** Khronos dumps (`SDL_opengl*`, GLES, `SDL_egl.h`), `SDL_test_*`, `SDL_oldnames.h`, and `va_list` helpers. `SDL_notification` and OpenXR are not in the 3.4.14 pin. `SDL_net` is still a later satellite. A game engine that `uses` these units will be a **separate** project.
+**Still out of the binding, on purpose:** Khronos dumps (`SDL_opengl*`, GLES, `SDL_egl.h`), `SDL_test_*`, `SDL_oldnames.h`, and `va_list` helpers. `SDL_notification` and OpenXR are not in the 3.4.16 pin. `SDL_net` is still a later satellite. A game engine that `uses` these units will be a **separate** project.
 
 ## License
 

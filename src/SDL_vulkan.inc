@@ -1,4 +1,4 @@
-{ SDL_vulkan.inc -- 1-to-1 from SDL_vulkan.h (SDL 3.4.14) }
+{ SDL_vulkan.inc -- 1-to-1 from SDL_vulkan.h (SDL 3.4.16) }
 { Vk* handles are pointer-sized on Win64. VkAllocationCallbacks stays opaque. }
 
 type

@@ -79,7 +79,7 @@ begin
   end;
   if Linked < SDL_VERSION then
   begin
-    WriteLn('SDL3.dll is older than the SDL 3.4.14 pin.');
+    WriteLn('SDL3.dll is older than the SDL 3.4.16 pin.');
     Halt(1);
   end;
 

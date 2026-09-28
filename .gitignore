@@ -22,6 +22,9 @@ OSX64/
 OSXARM64/
 *.~*
 
+# Downloaded official binaries (tools/fetch-dlls.ps1)
+.cache/
+
 # OS
 .DS_Store
 Thumbs.db

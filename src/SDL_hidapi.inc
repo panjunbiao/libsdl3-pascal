@@ -1,4 +1,4 @@
-{ SDL_hidapi.inc -- 1-to-1 from SDL_hidapi.h (SDL 3.4.14) }
+{ SDL_hidapi.inc -- 1-to-1 from SDL_hidapi.h (SDL 3.4.16) }
 
 type
   SDL_hid_device = record

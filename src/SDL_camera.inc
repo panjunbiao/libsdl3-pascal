@@ -1,4 +1,4 @@
-{ SDL_camera.inc -- 1-to-1 from SDL_camera.h (SDL 3.4.14) }
+{ SDL_camera.inc -- 1-to-1 from SDL_camera.h (SDL 3.4.16) }
 
 type
   SDL_CameraID = Uint32;

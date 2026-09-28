@@ -4,7 +4,7 @@ Minimal Delphi Win64 program: `SDL_SetMainReady`, `SDL_Init(SDL_INIT_VIDEO)`, cr
 
 ## Build
 
-Put `SDL3.dll` (3.4.14) next to the executable, or on `PATH`. Official binaries: https://github.com/libsdl-org/SDL/releases/tag/release-3.4.14
+Put `SDL3.dll` (3.4.16) next to the executable, or on `PATH`. From the repository root, `powershell -File tools\fetch-dlls.ps1` downloads the official DLL into this folder. Official binaries: https://github.com/libsdl-org/SDL/releases/tag/release-3.4.16
 
 From the `src` directory on the compiler unit path:
 

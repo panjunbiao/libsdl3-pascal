@@ -6,7 +6,7 @@ Escape or close the window to quit. If no GPU backend can be created, the progra
 
 ## Build
 
-Put `SDL3.dll` (3.4.14) next to the executable, or on `PATH`.
+Put `SDL3.dll` (3.4.16) next to the executable, or on `PATH`. From the repository root, `powershell -File tools\fetch-dlls.ps1` downloads the official DLL into this folder.
 
 ```
 dcc64 -U..\..\src -I..\..\src gpu.dpr

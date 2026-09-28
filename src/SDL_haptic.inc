@@ -1,4 +1,4 @@
-{ SDL_haptic.inc -- 1-to-1 from SDL_haptic.h (SDL 3.4.14) }
+{ SDL_haptic.inc -- 1-to-1 from SDL_haptic.h (SDL 3.4.16) }
 
 type
   SDL_Haptic = record

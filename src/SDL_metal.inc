@@ -1,4 +1,4 @@
-{ SDL_metal.inc -- 1-to-1 from SDL_metal.h (SDL 3.4.14) }
+{ SDL_metal.inc -- 1-to-1 from SDL_metal.h (SDL 3.4.16) }
 
 type
   SDL_MetalView = Pointer;

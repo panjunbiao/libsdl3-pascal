@@ -1,4 +1,4 @@
-{ SDL_stdinc.inc -- 1-to-1 from SDL_stdinc.h (SDL 3.4.14) }
+{ SDL_stdinc.inc -- 1-to-1 from SDL_stdinc.h (SDL 3.4.16) }
 
 type
   { Delphi type names are case-insensitive; do not alias Uint8 = UInt8. }

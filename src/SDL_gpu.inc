@@ -1,4 +1,4 @@
-{ SDL_gpu.inc -- 1-to-1 from SDL_gpu.h (SDL 3.4.14) }
+{ SDL_gpu.inc -- 1-to-1 from SDL_gpu.h (SDL 3.4.16) }
 
 type
   SDL_GPUDevice = record

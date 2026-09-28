@@ -1,4 +1,4 @@
-{ SDL_render.inc -- 1-to-1 from SDL_render.h (SDL 3.4.14) }
+{ SDL_render.inc -- 1-to-1 from SDL_render.h (SDL 3.4.16) }
 
 const
   SDL_SOFTWARE_RENDERER = 'software';

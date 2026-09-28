@@ -422,6 +422,7 @@ type
     timestamp: Uint64;
     windowID: SDL_WindowID;
     which: SDL_PenID;
+    pen_state: SDL_PenInputFlags;
   end;
 
   SDL_PenMotionEvent = record

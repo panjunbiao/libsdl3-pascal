@@ -19,16 +19,32 @@ dcc64 -Upath\to\libsdl3-pascal\src -Ipath\to\libsdl3-pascal\src myapp.dpr
 
 ## 2. Ship the official DLLs
 
-Download the matching official Windows x64 zips and put the DLLs next to your `.exe` (or on `PATH`):
+The units do not include binaries. From the repository root:
+
+```
+powershell -File tools\fetch-dlls.ps1
+```
+
+That downloads the pinned official Windows x64 zips and copies `SDL3.dll` next to each example. `examples/satellites` also gets `SDL3_image.dll`, `SDL3_ttf.dll`, `SDL3_mixer.dll`, and the optional decoder DLLs (PNG needs `libpng16-16.dll`). If an example already has a `Win64\Debug` or `Win64\Release` folder, the same files are copied there too.
+
+One application directory, including the satellite DLLs:
+
+```
+powershell -File tools\fetch-dlls.ps1 -Dest path\to\your\exe\folder
+```
+
+The script copies each zip’s `LICENSE.txt` when you pass `-Dest` (`LICENSE.SDL3.txt`, and the satellite names). Keep those licenses if you redistribute the binaries. The downloaded zips stay in `.cache\dlls`.
+
+The same official releases, if you download them yourself:
 
 | Unit | Pin | Download |
 |---|---|---|
-| `SDL3` | 3.4.14 | [SDL release-3.4.14](https://github.com/libsdl-org/SDL/releases/tag/release-3.4.14) |
+| `SDL3` | 3.4.16 | [SDL release-3.4.16](https://github.com/libsdl-org/SDL/releases/tag/release-3.4.16) |
 | `SDL3_image` | 3.4.4 | [SDL_image release-3.4.4](https://github.com/libsdl-org/SDL_image/releases/tag/release-3.4.4) |
 | `SDL3_ttf` | 3.2.2 | [SDL_ttf release-3.2.2](https://github.com/libsdl-org/SDL_ttf/releases/tag/release-3.2.2) |
 | `SDL3_mixer` | 3.2.4 | [SDL_mixer release-3.2.4](https://github.com/libsdl-org/SDL_mixer/releases/tag/release-3.2.4) |
 
-PNG also needs `libpng16-16.dll` from the image zip’s `optional` folder. Keep each zip’s `LICENSE.txt` with redistributed binaries.
+PNG also needs `libpng16-16.dll` from the image zip’s `optional` folder.
 
 Do not mix a newer header pin with an older DLL. After the process starts:
 
@@ -103,5 +119,5 @@ Set `SDL_HINT_*` constants from `SDL3` before `SDL_Init` when you need them.
 
 - No classes, interfaces, or `string` wrappers.
 - `SDL3_mixer` is the SDL3 `MIX_*` API, not SDL2 `Mix_*`.
-- GPU, camera, haptic, and the other 3.4.14 headers are declared. A declaration for Android, iOS, or Metal is not a claim that those platforms run.
+- GPU, camera, haptic, and the other 3.4.16 headers are declared. A declaration for Android, iOS, or Metal is not a claim that those platforms run.
 - `SDL_net`, Khronos GL/EGL dumps, and SDL’s C test headers are not part of this binding.

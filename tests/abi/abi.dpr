@@ -90,7 +90,7 @@ begin
   Check('SDL_AssertData', SizeOf(SDL_AssertData), 48);
   Check('SDL_AsyncIOOutcome', SizeOf(SDL_AsyncIOOutcome), 56);
   Check('SDL_StorageInterface', SizeOf(SDL_StorageInterface), 96);
-  Check('SDL_PenProximityEvent', SizeOf(SDL_PenProximityEvent), 24);
+  Check('SDL_PenProximityEvent', SizeOf(SDL_PenProximityEvent), 32);
   Check('SDL_PenMotionEvent', SizeOf(SDL_PenMotionEvent), 40);
   Check('SDL_PenTouchEvent', SizeOf(SDL_PenTouchEvent), 40);
   Check('SDL_PenButtonEvent', SizeOf(SDL_PenButtonEvent), 40);

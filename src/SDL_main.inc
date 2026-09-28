@@ -1,4 +1,4 @@
-{ SDL_main.inc -- 1-to-1 from SDL_main.h (SDL 3.4.14) }
+{ SDL_main.inc -- 1-to-1 from SDL_main.h (SDL 3.4.16) }
 { C SDL_main rewrite macros stay out. Delphi apps call SDL_SetMainReady. }
 
 type
