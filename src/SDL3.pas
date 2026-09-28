@@ -74,6 +74,14 @@ const
 {$I SDL_dialog.inc}
 {$I SDL_asyncio.inc}
 {$I SDL_system.inc}
+{$I SDL_camera.inc}
+{$I SDL_haptic.inc}
+{$I SDL_hidapi.inc}
+{$I SDL_process.inc}
+{$I SDL_tray.inc}
+{$I SDL_metal.inc}
+{$I SDL_vulkan.inc}
+{$I SDL_gpu.inc}
 {$I SDL_render.inc}
 
 implementation

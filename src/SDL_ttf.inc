@@ -1,5 +1,4 @@
 { SDL_ttf.inc -- 1-to-1 from SDL_ttf.h (SDL_ttf 3.2.2) }
-{ Skipped GPU text-engine APIs (need SDL_GPUDevice). }
 
 const
   SDL_TTF_MAJOR_VERSION = 3;
@@ -21,6 +20,8 @@ const
   TTF_PROP_FONT_OUTLINE_MITER_LIMIT_NUMBER = 'SDL_ttf.font.outline.miter_limit';
   TTF_PROP_RENDERER_TEXT_ENGINE_RENDERER = 'SDL_ttf.renderer_text_engine.create.renderer';
   TTF_PROP_RENDERER_TEXT_ENGINE_ATLAS_TEXTURE_SIZE = 'SDL_ttf.renderer_text_engine.create.atlas_texture_size';
+  TTF_PROP_GPU_TEXT_ENGINE_DEVICE = 'SDL_ttf.gpu_text_engine.create.device';
+  TTF_PROP_GPU_TEXT_ENGINE_ATLAS_TEXTURE_SIZE = 'SDL_ttf.gpu_text_engine.create.atlas_texture_size';
 
   TTF_STYLE_NORMAL = $00;
   TTF_STYLE_BOLD = $01;
@@ -112,6 +113,24 @@ type
     TTF_IMAGE_SDF
   );
   PTTF_ImageType = ^TTF_ImageType;
+
+  PTTF_GPUAtlasDrawSequence = ^TTF_GPUAtlasDrawSequence;
+  TTF_GPUAtlasDrawSequence = record
+    atlas_texture: PSDL_GPUTexture;
+    xy: PSDL_FPoint;
+    uv: PSDL_FPoint;
+    num_vertices: Integer;
+    indices: PInteger;
+    num_indices: Integer;
+    image_type: TTF_ImageType;
+    next: PTTF_GPUAtlasDrawSequence;
+  end;
+
+  TTF_GPUTextEngineWinding = (
+    TTF_GPU_TEXTENGINE_WINDING_INVALID = -1,
+    TTF_GPU_TEXTENGINE_WINDING_CLOCKWISE,
+    TTF_GPU_TEXTENGINE_WINDING_COUNTER_CLOCKWISE
+  );
 
 function TTF_Version: Integer; cdecl;
   external SDL_TTF_LIB_NAME;
@@ -263,12 +282,18 @@ function TTF_DrawRendererText(text: PTTF_Text; x: Single; y: Single): Boolean; c
   external SDL_TTF_LIB_NAME;
 procedure TTF_DestroyRendererTextEngine(engine: PTTF_TextEngine); cdecl;
   external SDL_TTF_LIB_NAME;
-{ skipped TTF_CreateGPUTextEngine -- GPU text engine }
-{ skipped TTF_CreateGPUTextEngineWithProperties -- GPU text engine }
-{ skipped TTF_GetGPUTextDrawData -- GPU text engine }
-{ skipped TTF_DestroyGPUTextEngine -- GPU text engine }
-{ skipped TTF_SetGPUTextEngineWinding -- GPU text engine }
-{ skipped TTF_GetGPUTextEngineWinding -- GPU text engine }
+function TTF_CreateGPUTextEngine(device: PSDL_GPUDevice): PTTF_TextEngine; cdecl;
+  external SDL_TTF_LIB_NAME;
+function TTF_CreateGPUTextEngineWithProperties(props: SDL_PropertiesID): PTTF_TextEngine; cdecl;
+  external SDL_TTF_LIB_NAME;
+function TTF_GetGPUTextDrawData(text: PTTF_Text): PTTF_GPUAtlasDrawSequence; cdecl;
+  external SDL_TTF_LIB_NAME;
+procedure TTF_DestroyGPUTextEngine(engine: PTTF_TextEngine); cdecl;
+  external SDL_TTF_LIB_NAME;
+procedure TTF_SetGPUTextEngineWinding(engine: PTTF_TextEngine; winding: TTF_GPUTextEngineWinding); cdecl;
+  external SDL_TTF_LIB_NAME;
+function TTF_GetGPUTextEngineWinding(engine: PTTF_TextEngine): TTF_GPUTextEngineWinding; cdecl;
+  external SDL_TTF_LIB_NAME;
 function TTF_CreateText(engine: PTTF_TextEngine; font: PTTF_Font; text: PUTF8Char; length: NativeUInt): PTTF_Text; cdecl;
   external SDL_TTF_LIB_NAME;
 function TTF_GetTextProperties(text: PTTF_Text): SDL_PropertiesID; cdecl;

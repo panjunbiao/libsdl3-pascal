@@ -102,6 +102,6 @@ Set `SDL_HINT_*` constants from `SDL3` before `SDL_Init` when you need them.
 ## 5. What not to expect
 
 - No classes, interfaces, or `string` wrappers.
-- No `SDL_gpu` / camera / haptic device APIs in this tag.
 - `SDL3_mixer` is the SDL3 `MIX_*` API, not SDL2 `Mix_*`.
-- GPU image loaders and the TTF GPU text engine are skipped (they need `SDL_GPUDevice`).
+- GPU, camera, haptic, and the other 3.4.14 headers are declared. A declaration for Android, iOS, or Metal is not a claim that those platforms run.
+- `SDL_net`, Khronos GL/EGL dumps, and SDL’s C test headers are not part of this binding.

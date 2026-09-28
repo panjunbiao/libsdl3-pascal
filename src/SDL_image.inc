@@ -1,5 +1,4 @@
 { SDL_image.inc -- 1-to-1 from SDL_image.h (SDL_image 3.4.4) }
-{ Skipped IMG_LoadGPUTexture* -- SDL_GPUDevice is not in the 2D core. }
 
 const
   SDL_IMAGE_MAJOR_VERSION = 3;
@@ -78,9 +77,12 @@ function IMG_LoadTexture_IO(renderer: PSDL_Renderer; src: PSDL_IOStream; closeio
   external SDL_IMAGE_LIB_NAME;
 function IMG_LoadTextureTyped_IO(renderer: PSDL_Renderer; src: PSDL_IOStream; closeio: Boolean; type_: PUTF8Char): PSDL_Texture; cdecl;
   external SDL_IMAGE_LIB_NAME;
-{ skipped IMG_LoadGPUTexture -- GPU types not in 2D core }
-{ skipped IMG_LoadGPUTexture_IO -- GPU types not in 2D core }
-{ skipped IMG_LoadGPUTextureTyped_IO -- GPU types not in 2D core }
+function IMG_LoadGPUTexture(device: PSDL_GPUDevice; copy_pass: PSDL_GPUCopyPass; file_: PUTF8Char; width: PInteger; height: PInteger): PSDL_GPUTexture; cdecl;
+  external SDL_IMAGE_LIB_NAME;
+function IMG_LoadGPUTexture_IO(device: PSDL_GPUDevice; copy_pass: PSDL_GPUCopyPass; src: PSDL_IOStream; closeio: Boolean; width: PInteger; height: PInteger): PSDL_GPUTexture; cdecl;
+  external SDL_IMAGE_LIB_NAME;
+function IMG_LoadGPUTextureTyped_IO(device: PSDL_GPUDevice; copy_pass: PSDL_GPUCopyPass; src: PSDL_IOStream; closeio: Boolean; type_: PUTF8Char; width: PInteger; height: PInteger): PSDL_GPUTexture; cdecl;
+  external SDL_IMAGE_LIB_NAME;
 function IMG_GetClipboardImage: PSDL_Surface; cdecl;
   external SDL_IMAGE_LIB_NAME;
 function IMG_isANI(src: PSDL_IOStream): Boolean; cdecl;

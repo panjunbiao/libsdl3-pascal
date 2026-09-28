@@ -1,4 +1,4 @@
-{ SDL_render.inc -- 1-to-1 from SDL_render.h. GPU renderer APIs skipped. }
+{ SDL_render.inc -- 1-to-1 from SDL_render.h (SDL 3.4.14) }
 
 const
   SDL_SOFTWARE_RENDERER = 'software';
@@ -172,8 +172,27 @@ function SDL_CreateRenderer(window: PSDL_Window; name: PUTF8Char): PSDL_Renderer
   external SDL_LIB_NAME;
 function SDL_CreateRendererWithProperties(props: SDL_PropertiesID): PSDL_Renderer; cdecl;
   external SDL_LIB_NAME;
-{ skipped SDL_CreateGPURenderer -- GPU types not in 2D core }
-{ skipped SDL_GetGPURendererDevice -- GPU types not in 2D core }
+type
+  SDL_GPURenderState = record
+  end;
+  PSDL_GPURenderState = ^SDL_GPURenderState;
+
+  PSDL_GPURenderStateCreateInfo = ^SDL_GPURenderStateCreateInfo;
+  SDL_GPURenderStateCreateInfo = record
+    fragment_shader: PSDL_GPUShader;
+    num_sampler_bindings: Sint32;
+    sampler_bindings: PSDL_GPUTextureSamplerBinding;
+    num_storage_textures: Sint32;
+    storage_textures: PPSDL_GPUTexture;
+    num_storage_buffers: Sint32;
+    storage_buffers: PPSDL_GPUBuffer;
+    props: SDL_PropertiesID;
+  end;
+
+function SDL_CreateGPURenderer(device: PSDL_GPUDevice; window: PSDL_Window): PSDL_Renderer; cdecl;
+  external SDL_LIB_NAME;
+function SDL_GetGPURendererDevice(renderer: PSDL_Renderer): PSDL_GPUDevice; cdecl;
+  external SDL_LIB_NAME;
 function SDL_CreateSoftwareRenderer(surface: PSDL_Surface): PSDL_Renderer; cdecl;
   external SDL_LIB_NAME;
 function SDL_GetRenderer(window: PSDL_Window): PSDL_Renderer; cdecl;
@@ -356,7 +375,11 @@ function SDL_SetDefaultTextureScaleMode(renderer: PSDL_Renderer; scale_mode: SDL
   external SDL_LIB_NAME;
 function SDL_GetDefaultTextureScaleMode(renderer: PSDL_Renderer; scale_mode: PSDL_ScaleMode): Boolean; cdecl;
   external SDL_LIB_NAME;
-{ skipped SDL_CreateGPURenderState -- GPU types not in 2D core }
-{ skipped SDL_SetGPURenderStateFragmentUniforms -- GPU types not in 2D core }
-{ skipped SDL_SetGPURenderState -- GPU types not in 2D core }
-{ skipped SDL_DestroyGPURenderState -- GPU types not in 2D core }
+function SDL_CreateGPURenderState(renderer: PSDL_Renderer; createinfo: PSDL_GPURenderStateCreateInfo): PSDL_GPURenderState; cdecl;
+  external SDL_LIB_NAME;
+function SDL_SetGPURenderStateFragmentUniforms(state: PSDL_GPURenderState; slot_index: Uint32; data: Pointer; length: Uint32): Boolean; cdecl;
+  external SDL_LIB_NAME;
+function SDL_SetGPURenderState(renderer: PSDL_Renderer; state: PSDL_GPURenderState): Boolean; cdecl;
+  external SDL_LIB_NAME;
+procedure SDL_DestroyGPURenderState(state: PSDL_GPURenderState); cdecl;
+  external SDL_LIB_NAME;

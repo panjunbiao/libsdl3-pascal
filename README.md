@@ -2,7 +2,9 @@
 
 1-to-1 Pascal bindings for [Simple DirectMedia Layer 3](https://www.libsdl.org/).
 
-**v1.1.0** binds SDL **3.4.14** plus optional satellites for **Delphi 11+ Win64**. This library translates the C APIs. It does not add classes, `string` helpers, or a game engine. Applications write `uses SDL3` (and `SDL3_image` / `SDL3_ttf` / `SDL3_mixer` if needed) and call the C names (`SDL_Init`, `IMG_LoadTexture`, `TTF_OpenFont`, `MIX_PlayTrack`, …).
+This library is a complete mapping of the app-callable SDL **3.4.14** headers, plus optional satellites, for **Delphi 11+ Win64**. It translates the C APIs. It does not add classes, `string` helpers, or a game engine. Applications write `uses SDL3` (and `SDL3_image` / `SDL3_ttf` / `SDL3_mixer` if needed) and call the C names (`SDL_Init`, `SDL_CreateGPUDevice`, `IMG_LoadTexture`, `TTF_OpenFont`, `MIX_PlayTrack`, …).
+
+v1.0 and v1.1 shipped a 2D-oriented cut first. That was release order, not a limit on later headers.
 
 Step-by-step setup: [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md).
 
@@ -50,7 +52,7 @@ flowchart LR
 | `SDL3_ttf` | [SDL_ttf](https://github.com/libsdl-org/SDL_ttf) | **3.2.2** | `SDL3_ttf.dll` |
 | `SDL3_mixer` | [SDL_mixer](https://github.com/libsdl-org/SDL_mixer) | **3.2.4** | `SDL3_mixer.dll` (`MIX_*`, not SDL2 `Mix_*`) |
 
-GPU device APIs stay out (`SDL_CreateGPURenderer`, `IMG_LoadGPUTexture*`, TTF GPU text engine).
+GPU, camera, haptic, HID, process, tray, Vulkan surface helpers, and Metal view helpers are in `SDL3`. `IMG_LoadGPUTexture*` and the TTF GPU text engine are in the satellite units. Declaring an Android or Metal function does not mean that platform is supported.
 
 ## Getting started (short)
 
@@ -82,7 +84,7 @@ tests/abi             SizeOf checks
 
 Dates are not fixed. The binding stays a literal C mapping as it grows. The `{$IFDEF}` library-name split is already in each unit so later platforms do not need a redesign.
 
-**Now (v1.1.0):** Delphi 11+ on **Windows desktop, 64-bit**.
+**Now:** Delphi 11+ on **Windows desktop, 64-bit**, covering the SDL 3.4.14 app-callable API.
 
 **Next platforms** (order may change):
 
@@ -93,7 +95,7 @@ Dates are not fixed. The binding stays a literal C mapping as it grows. The `{$I
 
 Each new OS or architecture needs its own C ABI check (`sizeof` / packing can differ) and a real official binary before we claim it.
 
-**Later APIs** (still out of this tag): `SDL_gpu` and the GPU-only image / TTF entry points, camera, haptic, hidapi, `SDL_net`, and the usual 3D / XR header dumps. A 2D game engine that `uses` these units will be a **separate** project.
+**Still out of the binding, on purpose:** Khronos dumps (`SDL_opengl*`, GLES, `SDL_egl.h`), `SDL_test_*`, `SDL_oldnames.h`, and `va_list` helpers. `SDL_notification` and OpenXR are not in the 3.4.14 pin. `SDL_net` is still a later satellite. A game engine that `uses` these units will be a **separate** project.
 
 ## License
 
