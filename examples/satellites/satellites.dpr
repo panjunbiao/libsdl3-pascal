@@ -68,7 +68,7 @@ var
   Latin: UTF8String;
 begin
   SDL_SetMainReady;
-  SDL_SetAppMetadata('libsdl3-pascal satellites', '1.1.0', 'com.libsdl3pascal.satellites');
+  SDL_SetAppMetadata('libsdl3-pascal satellites', '0.1.0', 'com.libsdl3pascal.satellites');
   SDL_SetHint(SDL_HINT_RENDER_VSYNC, '1');
 
   Linked := SDL_GetVersion;
@@ -131,7 +131,7 @@ begin
     Die('TTF_CreateRendererTextEngine');
 
   Latin := 'SDL_image + SDL_ttf + SDL_mixer';
-  TextLatin := TTF_CreateText(Engine, FontLatin, PUTF8Char(Latin), Length(Latin));
+  TextLatin := TTF_CreateText(Engine, FontLatin, PUTF8Char(Latin), NativeUInt(Length(Latin)));
   if TextLatin = nil then
     Die('TTF_CreateText Latin');
   TextChinese := TTF_CreateText(Engine, FontSC, @ChineseUtf8[0], 15);

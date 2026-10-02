@@ -1,12 +1,19 @@
 unit SDL3;
 
+{ Project options must not change record layout or the short-circuit
+  tests in the inline helpers. }
 {$IFDEF FPC}
   {$MODE OBJFPC}
   {$PACKRECORDS C}
+{$ELSE}
+  {$ALIGN 8}
+  {$WARN LOST_EXTENDED_PRECISION OFF} { SDL_PI_D and friends are not exact in Double }
 {$ENDIF}
 
 {$MINENUMSIZE 4}
 {$Z4}
+{$BOOLEVAL OFF}
+{$EXTENDEDSYNTAX ON}
 
 interface
 
@@ -56,6 +63,7 @@ const
 {$I SDL_touch.inc}
 {$I SDL_pen.inc}
 {$I SDL_audio.inc}
+{$I SDL_camera.inc}
 {$I SDL_events.inc}
 {$I SDL_init.inc}
 {$I SDL_main.inc}
@@ -74,7 +82,6 @@ const
 {$I SDL_dialog.inc}
 {$I SDL_asyncio.inc}
 {$I SDL_system.inc}
-{$I SDL_camera.inc}
 {$I SDL_haptic.inc}
 {$I SDL_hidapi.inc}
 {$I SDL_process.inc}
@@ -97,10 +104,16 @@ implementation
 {$I SDL_surface.impl.inc}
 {$I SDL_video.impl.inc}
 {$I SDL_keycode.impl.inc}
+{$I SDL_mouse.impl.inc}
 {$I SDL_joystick.impl.inc}
 {$I SDL_timer.impl.inc}
 {$I SDL_audio.impl.inc}
 {$I SDL_thread.impl.inc}
 {$I SDL_storage.impl.inc}
+
+initialization
+  { SDL starts threads with CreateThread, which leaves this False, and the
+    Delphi memory manager only locks when it is True. }
+  IsMultiThread := True;
 
 end.

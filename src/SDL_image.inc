@@ -63,6 +63,8 @@ type
   );
   PIMG_AnimationDecoderStatus = ^IMG_AnimationDecoderStatus;
 
+function SDL_IMAGE_VERSION_ATLEAST(X, Y, Z: Integer): Boolean;
+
 function IMG_Version: Integer; cdecl;
   external SDL_IMAGE_LIB_NAME;
 function IMG_Load(file_: PUTF8Char): PSDL_Surface; cdecl;

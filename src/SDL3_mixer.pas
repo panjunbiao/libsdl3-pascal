@@ -1,12 +1,18 @@
 unit SDL3_mixer;
 
+{ Project options must not change record layout or the short-circuit
+  tests in the inline helpers. }
 {$IFDEF FPC}
   {$MODE OBJFPC}
   {$PACKRECORDS C}
+{$ELSE}
+  {$ALIGN 8}
 {$ENDIF}
 
 {$MINENUMSIZE 4}
 {$Z4}
+{$BOOLEVAL OFF}
+{$EXTENDEDSYNTAX ON}
 
 interface
 
@@ -31,5 +37,7 @@ const
 {$I SDL_mixer.inc}
 
 implementation
+
+{$I SDL_mixer.impl.inc}
 
 end.

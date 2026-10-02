@@ -24,6 +24,10 @@ type
     SDL_SANDBOX_MACOS
   );
 
+const
+  SDL_ANDROID_EXTERNAL_STORAGE_READ = $01;
+  SDL_ANDROID_EXTERNAL_STORAGE_WRITE = $02;
+
 procedure SDL_SetWindowsMessageHook(callback: SDL_WindowsMessageHook; userdata: Pointer); cdecl;
   external SDL_LIB_NAME;
 function SDL_GetDirect3D9AdapterIndex(displayID: SDL_DisplayID): Integer; cdecl;

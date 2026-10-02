@@ -81,6 +81,8 @@ type
   MIX_GroupMixCallback = procedure(userdata: Pointer; group: PMIX_Group; const spec: PSDL_AudioSpec; pcm: PSingle; samples: Integer); cdecl;
   MIX_PostMixCallback = procedure(userdata: Pointer; mixer: PMIX_Mixer; const spec: PSDL_AudioSpec; pcm: PSingle; samples: Integer); cdecl;
 
+function SDL_MIXER_VERSION_ATLEAST(X, Y, Z: Integer): Boolean;
+
 function MIX_Version: Integer; cdecl;
   external SDL_MIXER_LIB_NAME;
 function MIX_Init: Boolean; cdecl;

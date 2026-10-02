@@ -1,0 +1,6 @@
+function SDL_IMAGE_VERSION_ATLEAST(X, Y, Z: Integer): Boolean;
+begin
+  Result := (SDL_IMAGE_MAJOR_VERSION >= X) and
+    ((SDL_IMAGE_MAJOR_VERSION > X) or (SDL_IMAGE_MINOR_VERSION >= Y)) and
+    ((SDL_IMAGE_MAJOR_VERSION > X) or (SDL_IMAGE_MINOR_VERSION > Y) or (SDL_IMAGE_MICRO_VERSION >= Z));
+end;

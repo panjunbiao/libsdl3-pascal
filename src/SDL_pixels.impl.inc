@@ -101,3 +101,70 @@ begin
   Result := SDL_PixelFormat((1 shl 28) or (type_ shl 24) or (order shl 20) or
     (layout shl 16) or (bits shl 8) or bytes);
 end;
+
+function SDL_DEFINE_PIXELFOURCC(A, B, C, D: Uint8): SDL_PixelFormat;
+begin
+  Result := SDL_PixelFormat(SDL_FOURCC(A, B, C, D));
+end;
+
+function SDL_DEFINE_COLORSPACE(type_, range, primaries, transfer, matrix, chroma: Uint32): SDL_Colorspace;
+begin
+  Result := SDL_Colorspace((type_ shl 28) or (range shl 24) or (chroma shl 20) or
+    (primaries shl 10) or (transfer shl 5) or matrix);
+end;
+
+function SDL_COLORSPACETYPE(cspace: SDL_Colorspace): SDL_ColorType;
+begin
+  Result := SDL_ColorType((Uint32(cspace) shr 28) and $0F);
+end;
+
+function SDL_COLORSPACERANGE(cspace: SDL_Colorspace): SDL_ColorRange;
+begin
+  Result := SDL_ColorRange((Uint32(cspace) shr 24) and $0F);
+end;
+
+function SDL_COLORSPACECHROMA(cspace: SDL_Colorspace): SDL_ChromaLocation;
+begin
+  Result := SDL_ChromaLocation((Uint32(cspace) shr 20) and $0F);
+end;
+
+function SDL_COLORSPACEPRIMARIES(cspace: SDL_Colorspace): SDL_ColorPrimaries;
+begin
+  Result := SDL_ColorPrimaries((Uint32(cspace) shr 10) and $1F);
+end;
+
+function SDL_COLORSPACETRANSFER(cspace: SDL_Colorspace): SDL_TransferCharacteristics;
+begin
+  Result := SDL_TransferCharacteristics((Uint32(cspace) shr 5) and $1F);
+end;
+
+function SDL_COLORSPACEMATRIX(cspace: SDL_Colorspace): SDL_MatrixCoefficients;
+begin
+  Result := SDL_MatrixCoefficients(Uint32(cspace) and $1F);
+end;
+
+function SDL_ISCOLORSPACE_MATRIX_BT601(cspace: SDL_Colorspace): Boolean;
+begin
+  Result := (SDL_COLORSPACEMATRIX(cspace) = SDL_MATRIX_COEFFICIENTS_BT601) or
+    (SDL_COLORSPACEMATRIX(cspace) = SDL_MATRIX_COEFFICIENTS_BT470BG);
+end;
+
+function SDL_ISCOLORSPACE_MATRIX_BT709(cspace: SDL_Colorspace): Boolean;
+begin
+  Result := SDL_COLORSPACEMATRIX(cspace) = SDL_MATRIX_COEFFICIENTS_BT709;
+end;
+
+function SDL_ISCOLORSPACE_MATRIX_BT2020_NCL(cspace: SDL_Colorspace): Boolean;
+begin
+  Result := SDL_COLORSPACEMATRIX(cspace) = SDL_MATRIX_COEFFICIENTS_BT2020_NCL;
+end;
+
+function SDL_ISCOLORSPACE_LIMITED_RANGE(cspace: SDL_Colorspace): Boolean;
+begin
+  Result := SDL_COLORSPACERANGE(cspace) <> SDL_COLOR_RANGE_FULL;
+end;
+
+function SDL_ISCOLORSPACE_FULL_RANGE(cspace: SDL_Colorspace): Boolean;
+begin
+  Result := SDL_COLORSPACERANGE(cspace) = SDL_COLOR_RANGE_FULL;
+end;

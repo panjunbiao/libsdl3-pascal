@@ -36,3 +36,17 @@ function SDL_RectEmptyFloat(const r: PSDL_FRect): Boolean;
 begin
   Result := (r = nil) or (r^.w < 0.0) or (r^.h < 0.0);
 end;
+
+function SDL_RectsEqualEpsilon(const a, b: PSDL_FRect; epsilon: Single): Boolean;
+begin
+  Result := (a <> nil) and (b <> nil) and ((a = b) or
+    ((Abs(a^.x - b^.x) <= epsilon) and
+     (Abs(a^.y - b^.y) <= epsilon) and
+     (Abs(a^.w - b^.w) <= epsilon) and
+     (Abs(a^.h - b^.h) <= epsilon)));
+end;
+
+function SDL_RectsEqualFloat(const a, b: PSDL_FRect): Boolean;
+begin
+  Result := SDL_RectsEqualEpsilon(a, b, SDL_FLT_EPSILON);
+end;

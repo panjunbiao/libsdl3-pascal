@@ -18,6 +18,32 @@ begin
   WriteLn('OK   ', Name, ' SizeOf=', Actual);
 end;
 
+procedure CheckOffset(const Name: string; Base, Field: Pointer; Expected: NativeUInt);
+var
+  Actual: NativeUInt;
+begin
+  Actual := NativeUInt(Field) - NativeUInt(Base);
+  if Actual <> Expected then
+  begin
+    WriteLn('FAIL ', Name, ' offset=', Actual, ' expected=', Expected);
+    Halt(1);
+  end;
+  WriteLn('OK   ', Name, ' offset=', Actual);
+end;
+
+var
+  Surface: SDL_Surface;
+  Palette: SDL_Palette;
+  Box: SDL_MessageBoxData;
+  Joystick: SDL_VirtualJoystickDesc;
+  Pipeline: SDL_GPUGraphicsPipelineCreateInfo;
+  Drop: SDL_DropEvent;
+  Sensor: SDL_SensorEvent;
+  Animation: IMG_Animation;
+  CopyOp: TTF_CopyOperation;
+  TextData: TTF_TextData;
+  Engine: TTF_TextEngine;
+
 begin
   Check('Sint8', SizeOf(Sint8), 1);
   Check('Uint8', SizeOf(Uint8), 1);
@@ -148,6 +174,28 @@ begin
   Check('MIX_StereoGains', SizeOf(MIX_StereoGains), 8);
   Check('MIX_Point3D', SizeOf(MIX_Point3D), 12);
   Check('TTF_GPUAtlasDrawSequence', SizeOf(TTF_GPUAtlasDrawSequence), 56);
+  Check('SDL_CameraDeviceEvent', SizeOf(SDL_CameraDeviceEvent), 24);
+  Check('SDL_SensorEvent', SizeOf(SDL_SensorEvent), 56);
+  Check('SDL_RenderEvent', SizeOf(SDL_RenderEvent), 24);
+  Check('SDL_DropEvent', SizeOf(SDL_DropEvent), 48);
+  Check('TTF_FillOperation', SizeOf(TTF_FillOperation), 20);
+  Check('TTF_CopyOperation', SizeOf(TTF_CopyOperation), 64);
+  Check('TTF_DrawOperation', SizeOf(TTF_DrawOperation), 64);
+  Check('TTF_TextData', SizeOf(TTF_TextData), 112);
+  Check('TTF_TextEngine', SizeOf(TTF_TextEngine), 32);
+
+  CheckOffset('SDL_Surface.pixels', @Surface, @Surface.pixels, 24);
+  CheckOffset('SDL_Palette.colors', @Palette, @Palette.colors, 8);
+  CheckOffset('SDL_MessageBoxData.window', @Box, @Box.window, 8);
+  CheckOffset('SDL_VirtualJoystickDesc.name', @Joystick, @Joystick.name, 40);
+  CheckOffset('SDL_GPUGraphicsPipelineCreateInfo.target_info', @Pipeline, @Pipeline.target_info, 136);
+  CheckOffset('SDL_DropEvent.source', @Drop, @Drop.source, 32);
+  CheckOffset('SDL_DropEvent.data', @Drop, @Drop.data, 40);
+  CheckOffset('SDL_SensorEvent.sensor_timestamp', @Sensor, @Sensor.sensor_timestamp, 48);
+  CheckOffset('IMG_Animation.frames', @Animation, @Animation.frames, 16);
+  CheckOffset('TTF_CopyOperation.reserved', @CopyOp, @CopyOp.reserved, 56);
+  CheckOffset('TTF_TextData.layout', @TextData, @TextData.layout, 32);
+  CheckOffset('TTF_TextEngine.userdata', @Engine, @Engine.userdata, 8);
   WriteLn('camera drivers ', SDL_GetNumCameraDrivers);
   WriteLn('All required ABI checks passed.');
 end.

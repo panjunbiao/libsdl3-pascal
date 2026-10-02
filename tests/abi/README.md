@@ -5,4 +5,9 @@ dcc64 "-U..\..\src" "-I..\..\src" abi.dpr
 abi.exe
 ```
 
-`SDL_Event` must be 128 bytes. Satellite structs (`IMG_Animation` 32, `TTF_Text` 24, `TTF_SubString` 36, `MIX_StereoGains` 8, `MIX_Point3D` 12) are Win64 Delphi measurements; confirm against `libsdl3-pascal-dev/tools/abi-oracle`.
+The program checks `SizeOf` for the fixed-width types and the public structs,
+and the offsets of a few fields that sit after padding (`SDL_Surface.pixels`,
+`SDL_DropEvent.source`, `TTF_TextData.layout` and others). The expected values
+are the MSVC x64 layouts of the pinned SDL 3.4.16, SDL_image 3.4.4, SDL_ttf
+3.2.2 and SDL_mixer 3.2.4 headers; `SDL_Event` must be 128 bytes. The program
+exits with code 1 at the first mismatch.

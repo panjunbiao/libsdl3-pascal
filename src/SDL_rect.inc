@@ -33,6 +33,8 @@ function SDL_RectEmpty(const r: PSDL_Rect): Boolean;
 function SDL_RectsEqual(const a, b: PSDL_Rect): Boolean;
 function SDL_PointInRectFloat(const p: PSDL_FPoint; const r: PSDL_FRect): Boolean;
 function SDL_RectEmptyFloat(const r: PSDL_FRect): Boolean;
+function SDL_RectsEqualEpsilon(const a, b: PSDL_FRect; epsilon: Single): Boolean;
+function SDL_RectsEqualFloat(const a, b: PSDL_FRect): Boolean;
 
 function SDL_HasRectIntersection(const A, B: PSDL_Rect): Boolean; cdecl;
   external SDL_LIB_NAME;

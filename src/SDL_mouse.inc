@@ -60,6 +60,8 @@ const
   SDL_BUTTON_X1MASK = $00000008;
   SDL_BUTTON_X2MASK = $00000010;
 
+function SDL_BUTTON_MASK(X: Integer): SDL_MouseButtonFlags;
+
 function SDL_HasMouse: Boolean; cdecl;
   external SDL_LIB_NAME;
 function SDL_GetMice(count: PInteger): PSDL_MouseID; cdecl;

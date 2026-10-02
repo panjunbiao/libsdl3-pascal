@@ -1,0 +1,6 @@
+function SDL_MIXER_VERSION_ATLEAST(X, Y, Z: Integer): Boolean;
+begin
+  Result := (SDL_MIXER_MAJOR_VERSION >= X) and
+    ((SDL_MIXER_MAJOR_VERSION > X) or (SDL_MIXER_MINOR_VERSION >= Y)) and
+    ((SDL_MIXER_MAJOR_VERSION > X) or (SDL_MIXER_MINOR_VERSION > Y) or (SDL_MIXER_MICRO_VERSION >= Z));
+end;

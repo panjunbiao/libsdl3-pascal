@@ -18,9 +18,9 @@ Step-by-step setup: [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md).
 
 ![libsdl3-pascal satellites: Van Gogh roses, classroom illustration, 你好，世界](docs/images/satellites.png)
 
-Also see `examples/hello` (window + quit), `examples/draw` (clear + rectangle), and `tests/abi` (`SDL_Event` must be 128 bytes on Win64).
+Also see `examples/hello` (window + quit), `examples/draw` (clear + rectangle), and `tests/abi` (struct sizes and field offsets; `SDL_Event` must be 128 bytes on Win64).
 
-The headers added after the 2D cut have the same kind of small programs: `examples/gpu` (GPU clear), `examples/camera`, `examples/tray`, `examples/process`, `examples/devices` (haptic and HID), and `examples/vulkan`.
+Smaller programs cover the rest of the API: `examples/gpu` (GPU clear), `examples/camera`, `examples/tray`, `examples/process`, `examples/devices` (haptic and HID), and `examples/vulkan`.
 
 ## Architecture
 
@@ -86,7 +86,7 @@ examples/tray         notification-area menu
 examples/process      child process stdout
 examples/devices      haptic and HID listing
 examples/vulkan       Vulkan instance extensions
-tests/abi             SizeOf checks
+tests/abi             SizeOf and offset checks
 ```
 
 ## Roadmap

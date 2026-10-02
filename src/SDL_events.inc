@@ -385,6 +385,20 @@ type
     padding3: Uint8;
   end;
 
+  SDL_CameraDeviceEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_CameraID;
+  end;
+
+  SDL_RenderEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+  end;
+
   SDL_TouchFingerEvent = record
     type_: SDL_EventType;
     reserved: Uint32;
@@ -475,6 +489,26 @@ type
     value: Single;
   end;
 
+  SDL_DropEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    windowID: SDL_WindowID;
+    x: Single;
+    y: Single;
+    source: PUTF8Char;
+    data: PUTF8Char;
+  end;
+
+  SDL_SensorEvent = record
+    type_: SDL_EventType;
+    reserved: Uint32;
+    timestamp: Uint64;
+    which: SDL_SensorID;
+    data: array[0..5] of Single;
+    sensor_timestamp: Uint64;
+  end;
+
   SDL_QuitEvent = record
     type_: SDL_EventType;
     reserved: Uint32;
@@ -519,6 +553,7 @@ type
       22: (gtouchpad: SDL_GamepadTouchpadEvent);
       23: (gsensor: SDL_GamepadSensorEvent);
       24: (adevice: SDL_AudioDeviceEvent);
+      25: (cdevice: SDL_CameraDeviceEvent);
       26: (tfinger: SDL_TouchFingerEvent);
       27: (pinch: SDL_PinchFingerEvent);
       28: (clipboard: SDL_ClipboardEvent);
@@ -529,6 +564,9 @@ type
       33: (paxis: SDL_PenAxisEvent);
       34: (quit: SDL_QuitEvent);
       35: (user: SDL_UserEvent);
+      36: (sensor: SDL_SensorEvent);
+      37: (render: SDL_RenderEvent);
+      38: (drop: SDL_DropEvent);
       255: (padding: array[0..127] of Uint8);
   end;
 

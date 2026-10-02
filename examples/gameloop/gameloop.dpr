@@ -150,8 +150,8 @@ begin
   WriteLit(Line, Pos, 'fps=');
   WriteInt(Line, Pos, Fps);
   WriteLit(Line, Pos, '  mouse=');
-  MX := Trunc(MouseX);
-  MY := Trunc(MouseY);
+  MX := Integer(Trunc(MouseX));
+  MY := Integer(Trunc(MouseY));
   WriteInt(Line, Pos, MX);
   WriteLit(Line, Pos, ',');
   WriteInt(Line, Pos, MY);

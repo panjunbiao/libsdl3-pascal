@@ -68,6 +68,7 @@ const
   SDL_MIN_UINT64 = Uint64(0);
   SDL_MAX_TIME = SDL_MAX_SINT64;
   SDL_MIN_TIME = SDL_MIN_SINT64;
+  SDL_SIZE_MAX = High(NativeUInt);
   SDL_FLT_EPSILON = 1.1920928955078125E-07;
   SDL_PI_D = 3.141592653589793238462643383279502884;
   SDL_PI_F = 3.14159265358979323846;
@@ -75,6 +76,9 @@ const
   SDL_ICONV_E2BIG = NativeUInt(-2);
   SDL_ICONV_EILSEQ = NativeUInt(-3);
   SDL_ICONV_EINVAL = NativeUInt(-4);
+  SDL_INVALID_UNICODE_CODEPOINT = $FFFD;
+
+function SDL_FOURCC(A, B, C, D: Uint8): Uint32;
 
 { long / unsigned long match Win64 LLP64 (MSVC), not LP64. }
 function SDL_malloc(size: NativeUInt): Pointer; cdecl;
@@ -406,3 +410,11 @@ function SDL_iconv(cd: SDL_iconv_t; inbuf: PPUTF8Char; inbytesleft: PNativeUInt;
   external SDL_LIB_NAME;
 function SDL_iconv_string(tocode: PUTF8Char; fromcode: PUTF8Char; inbuf: PUTF8Char; inbytesleft: NativeUInt): PUTF8Char; cdecl;
   external SDL_LIB_NAME;
+function SDL_iconv_utf8_locale(S: PUTF8Char): PUTF8Char;
+function SDL_iconv_utf8_ucs2(S: PUTF8Char): PUint16;
+function SDL_iconv_utf8_ucs4(S: PUTF8Char): PUint32;
+function SDL_iconv_wchar_utf8(S: PWideChar): PUTF8Char;
+
+{ The *_builtin variants are compiler intrinsics in C and are not bound. }
+function SDL_size_mul_check_overflow(a, b: NativeUInt; ret: PNativeUInt): Boolean;
+function SDL_size_add_check_overflow(a, b: NativeUInt; ret: PNativeUInt): Boolean;

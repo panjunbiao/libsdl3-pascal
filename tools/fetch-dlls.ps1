@@ -1,12 +1,13 @@
 # Download the pinned official Win64 SDL DLLs into the example folders.
-# Binaries stay out of git. They come from the GitHub release assets.
+# Binaries stay out of git. They come from the GitHub release assets and are
+# checked against the SHA-256 pinned below before anything is extracted.
 param(
     [string]$Dest
 )
 
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
 $RepoRoot = Split-Path -Parent $PSScriptRoot
 $Cache = Join-Path $RepoRoot '.cache\dlls'
@@ -16,6 +17,7 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 $Core = @{
     Url = 'https://github.com/libsdl-org/SDL/releases/download/release-3.4.16/SDL3-3.4.16-win32-x64.zip'
     Zip = 'SDL3-3.4.16-win32-x64.zip'
+    Sha256 = '4217944b4e51457af4a59c82d883f8443b3e65964b2acd8943484c492756c4b6'
     License = 'LICENSE.SDL3.txt'
     Names = @('SDL3.dll')
 }
@@ -23,6 +25,7 @@ $Satellites = @(
     @{
         Url = 'https://github.com/libsdl-org/SDL_image/releases/download/release-3.4.4/SDL3_image-3.4.4-win32-x64.zip'
         Zip = 'SDL3_image-3.4.4-win32-x64.zip'
+        Sha256 = '15c88c3f4e20c0bd0640d7e6ebd40c8112cde308fc2bb5d0c92fa921f5745613'
         License = 'LICENSE.SDL3_image.txt'
         Names = @('SDL3_image.dll')
         Optional = $true
@@ -30,6 +33,7 @@ $Satellites = @(
     @{
         Url = 'https://github.com/libsdl-org/SDL_ttf/releases/download/release-3.2.2/SDL3_ttf-3.2.2-win32-x64.zip'
         Zip = 'SDL3_ttf-3.2.2-win32-x64.zip'
+        Sha256 = '13455007029cf487c5aacaa6ff84406be78ffdbed08f933aba3668680ff245f8'
         License = 'LICENSE.SDL3_ttf.txt'
         Names = @('SDL3_ttf.dll')
         Optional = $false
@@ -37,17 +41,32 @@ $Satellites = @(
     @{
         Url = 'https://github.com/libsdl-org/SDL_mixer/releases/download/release-3.2.4/SDL3_mixer-3.2.4-win32-x64.zip'
         Zip = 'SDL3_mixer-3.2.4-win32-x64.zip'
+        Sha256 = '9af526f8defc72ca3b979a6dc4d9e549e5be4dd8db3190cfa8941923a78f73cb'
         License = 'LICENSE.SDL3_mixer.txt'
         Names = @('SDL3_mixer.dll')
         Optional = $true
     }
 )
 
+function Test-Sha256($Path, $Expected) {
+    (Get-FileHash -Algorithm SHA256 -LiteralPath $Path).Hash -eq $Expected
+}
+
 function Get-OfficialZip($Pin) {
     $path = Join-Path $Cache $Pin.Zip
+    if ((Test-Path -LiteralPath $path) -and -not (Test-Sha256 $path $Pin.Sha256)) {
+        Write-Host "Discarding $($Pin.Zip): SHA-256 does not match the pin"
+        Remove-Item -LiteralPath $path
+    }
     if (-not (Test-Path -LiteralPath $path)) {
+        $part = "$path.part"
         Write-Host "Downloading $($Pin.Url)"
-        Invoke-WebRequest -Uri $Pin.Url -OutFile $path -UseBasicParsing
+        Invoke-WebRequest -Uri $Pin.Url -OutFile $part -UseBasicParsing
+        if (-not (Test-Sha256 $part $Pin.Sha256)) {
+            Remove-Item -LiteralPath $part
+            throw "$($Pin.Zip) does not match the pinned SHA-256"
+        }
+        Move-Item -LiteralPath $part -Destination $path -Force
     }
     return $path
 }

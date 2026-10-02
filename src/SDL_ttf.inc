@@ -49,12 +49,7 @@ type
   end;
   PTTF_Font = ^TTF_Font;
 
-  TTF_TextEngine = record
-  end;
   PTTF_TextEngine = ^TTF_TextEngine;
-
-  TTF_TextData = record
-  end;
   PTTF_TextData = ^TTF_TextData;
 
   TTF_FontStyleFlags = Uint32;
@@ -131,6 +126,10 @@ type
     TTF_GPU_TEXTENGINE_WINDING_CLOCKWISE,
     TTF_GPU_TEXTENGINE_WINDING_COUNTER_CLOCKWISE
   );
+
+{$I SDL_textengine.inc}
+
+function SDL_TTF_VERSION_ATLEAST(X, Y, Z: Integer): Boolean;
 
 function TTF_Version: Integer; cdecl;
   external SDL_TTF_LIB_NAME;
