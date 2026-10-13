@@ -22,8 +22,9 @@ OSX64/
 OSXARM64/
 *.~*
 
-# Downloaded official binaries (tools/fetch-dlls.ps1)
+# Downloaded official binaries (tools/fetch-dlls.ps1), exported headers, oracle builds
 .cache/
+__pycache__/
 
 # OS
 .DS_Store

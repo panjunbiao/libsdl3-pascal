@@ -74,8 +74,14 @@ src/SDL3_ttf.pas      optional SDL_ttf
 src/SDL3_mixer.pas    optional SDL_mixer
 src/SDL_*.inc         one include per C header
 docs/GETTING-STARTED.md
+docs/STYLEGUIDE.md    how C is mapped to Pascal
+docs/TRANSLATION.md   how headers are translated
+docs/ABI.md           how the binding is checked against the C ABI
+docs/UPSTREAM.md      pinned SDL releases and how to update them
 docs/images/          example screenshots
 tools/fetch-dlls.ps1  official Win64 DLLs for the examples
+tools/*.py            pins, coverage check, upstream diff, header export
+tools/abi-oracle/     C program printing struct sizes and offsets
 examples/hello        window + quit
 examples/draw         clear + filled rectangle
 examples/gameloop     Delphi Win64 game-loop project
@@ -105,6 +111,12 @@ Dates are not fixed. The binding stays a literal C mapping as it grows. The `{$I
 Each new OS or architecture needs its own C ABI check (`sizeof` / packing can differ) and a real official binary before we claim it.
 
 **Still out of the binding, on purpose:** Khronos dumps (`SDL_opengl*`, GLES, `SDL_egl.h`), `SDL_test_*`, `SDL_oldnames.h`, and `va_list` helpers. `SDL_notification` and OpenXR are not in the 3.4.16 pin. `SDL_net` is still a later satellite. A game engine that `uses` these units will be a **separate** project.
+
+Planned work is tracked in the [issues](https://github.com/panjunbiao/libsdl3-pascal/issues).
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md): the style guide, the translation method, the ABI checks, and how to update the SDL pin. AI coding agents working on this repository follow the same rules, summarized in [AGENTS.md](AGENTS.md).
 
 ## License
 
